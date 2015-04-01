@@ -14,7 +14,7 @@ var reload = browserSync.reload;
 //   return version + '.' + name + '.' + 'min';
 // };
 
-gulp.task('serve', function() {
+gulp.task('serve', ['default'], function() {
     browserSync({
       server: "./dist"
     });
@@ -33,10 +33,10 @@ gulp.task('js', function () {
 
   return gulp.src('./src/js/index.js')
     .pipe(browserified)
-    // .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
-        // .pipe(uglify())
-    // .pipe(sourcemaps.write('.'))
+        .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -54,4 +54,4 @@ gulp.task('css', function() {
     .pipe(reload({stream: true}));
 });
 
-gulp.task('default', ['html', 'css', 'js', 'img', 'serve']);
+gulp.task('default', ['html', 'css', 'js', 'img']);

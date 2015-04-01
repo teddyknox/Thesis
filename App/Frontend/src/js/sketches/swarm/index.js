@@ -5,7 +5,7 @@ module.exports = function(s) {
   // ------ agents ------
   var agents;
   var agentsCount = 1000;
-  var overlayAlpha = 10;
+  var overlayAlpha = 1;
   var agentsAlpha = 90;
   var drawMode = 1;
 
