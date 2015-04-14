@@ -1,0 +1,31 @@
+.container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+img {
+  margin: 20px auto;
+  width: 256px;
+}
+
+button#ugly {
+  margin-right: 6px;
+}
+
+.button-row {
+  margin-bottom: 10px;
+}
+
+.gallery {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.gallery img {
+  width: 256px;
+  height: 256px;
+  float: left;
+  padding: 0;
+  margin: 0;
+}

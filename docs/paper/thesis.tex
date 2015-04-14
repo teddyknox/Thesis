@@ -5,7 +5,7 @@
 
 \bibliographystyle{plain}
 
-\title {Hybrid Computational Aesthetic Evaluation using Convolutional Neural Networks: Filtering Generative Art through Interactive Modeling of User Tastes}
+\title {Computational Aesthetic Evaluation using Convolutional Neural Networks: Filtering Generative Art by Modeling User Tastes}
 
 \author {Teddy Knox}
 \adviser {Professor Christopher Andrews}
@@ -18,9 +18,7 @@
 Recent advances in machine learning techniques have resulted in increasingly effective algorithms for discovering creative
 solutions to quantifiable optimization problems. In general, problems unaffected by advances in machine learning are not
 those involving creativity, but those whose optimization functions are difficult to quantify. To teach a computer to
-produce aesthetically pleasing artwork, one first must define a \"cost\" function for what makes a piece aesthetically
-pleasing, either manually or automatically. We're going to try to use Convolutional Neural Networks to make a hybrid
-Computational Aesthetic Evaluation function and generate artwork that appeals to the user.
+produce aesthetically pleasing artwork, one must first have in hand a model for aesthetic evaluation to guide the artwork generation. We performed several experiments with Convolutional Neural Networks to produce a hybrid Computational Aesthetic Evaluation model, and generate abstract art appealing to the user's tastes.
 \end{abstract}
 
 \begin{acknowledgements}
@@ -36,29 +34,92 @@ I dedicate this paper to science.
 \chapter{Introduction}
 \label{sec:intro}
 
+Generative art is produced according a set of well-defined procedures, and establishes a cooperative relationship between these procedures and the artist. The procedures defining a piece of generative art need not be carried out by a computer. Early examples of generative art can be found in ancient pottery and religious decorations, often involving the tesselation of geometric shapes and colors. These early examples are impressive for their cerebral nature and the unusual human precision, but their scale and complexity were severely limited by the available human resources for  calculation and manufacture. With the invention of modern computers, the limiting factor on the increasing prevalance and complexity of generative art has become the artist, specifically their expertise in creative decision making and aesthetic evaluation. Despite their enormous computational power, the primary use of modern computers in generative art falls into the category of rendering procedures into their realized form, rather than participating in the search for aesthetic beauty. Advances in machine learning for pattern recognition have proved useful in many different types of well-defined tasks. In this study we apply modern image classification techniques using convolutional neural networks to the problem of computational aesthetic evaluation, observing whether they are capable of learning the tastes evident in a dataset of randomly generated triangle art, labeled with aesthetic quality ratings.
+
+% - Not as much work in computer imagined art -- art which presents a few layers of abstraction so that each result is
+% unique and valuable on its own
+% - The goal, of course, when it comes to art is to produce beauty. But this in itself is not a simple concept.
+%   The branch of philosophy called Aesthetics can lend us some insight into where to look for answers.
+% - sensory tastes vary from person to person, although beauty is different as it is generally claimed as a universal
+%   property of a thing.
+% - Emanuel Kant argued that judgements of beauty are sensory, emotional and intellectual all at once,
+%   as opposed to judgements of enjoyment which are purely sensory.
+% - Contemporary views on beauty refuse such a thing as universal beauty, attributing such aesthetic certainties to the
+%   power of culture to shape opinions similarly.
+% - At the same time, it's fairly likely that humans have an innate disposition for certain aesthetics
+%   - think musical consonance and disonance
+%   - or facial or physical beauty for sexual reproduction (along with facial expressions)
+%   - Some have theorized that aesthetic pleasure has to do with the resolution of apparent complexity into compressed
+%     representations.
+%     - If so, might it be possible to train a classifier to recognize these complex compositions
+%       with compact representations.
+
+% - We experiment with state-of the art Convolutional Neural Networks to predict the subjective aesthetic beauty.
+
 \chapter{Related Work}
 
-\section{Related Work in Generative Art}
+The focus of this study of computation aesthetic evaluation is composed of two parts: generative art and machine learning.
 
 \section{Related Work in Generative Art}
+
+Philip Galanter has done the most to rigorously define the problem of computational aesthetic evaluation. In his paper, Computational Aesthetic Evaluation: Steps Towards Machine Creativity, he lays out current difficulties with programing creativity into a computer ~\cite{galanter-3}.
+
+Several others have applied genetic algorithms to optimize heuristics for aesthetic quality. For instance, a group
+seeking to automatically generate layouts for page content used the heuristic of minimizing wasted space as a fitness
+function on their population of layouts.
+
+\section{Related Work in Image Classification}
 
 \chapter{Theory}
 
 \section{Generative Art}
 
-\section{CAE-CNN}
+Three factors went into the selection of the type of artwork to be used in this experiment. First, a body of art with a significant variance in subjective quality was desirable, since the experiment hinges on judging differences in quality. Next, a type of art with sufficiently simple characteristics was desirable to make the job of image classification as simple as possible without sacrificing the fundamental complexities of color scheme and composition. Last, in order to collect a large corpus of images quickly, an artform allowing for an efficient curation process was desirable. A corpus generative art lends itself nicely to these three constraints, since the randomness inherent tends to result in a variance in quality, the sophisitcation of abstract art is relatively low, and an endless pool of images can be sourced instantaneously.
+
+I designed an extremely simple generative art method for producing our corpus of data. To produce an image, the program randomly places a random number of randomly-colored triangles on a randomly-colored background. I used a uniform random distribution in every case. I bounded the possible number of triangles, and limited the lightness of colors to a range, to boost the ratio of good results to bad results.
+
+\section{Compuational Aesthetic Evaluation - Convolutional Neural Network}
+
+We will use various CNN models that come with Caffe \"out of the box\" to test their efficacy, rather than attempt to customize a model to this task. The first model we will test is called GoogLeNet, which won the ImageNet Large Scale Visual Recognition Challenge in 2014.
 
 \chapter{Implementation}
 
 \section{Generative Art}
 
-\section{CAE-CNN}
+I designed a web interface for recording a binary rating to 4000 generated images, each three times, to form a composite score for each image. At each training interval, the trainer is shown an image on the screen, and asked to rate its quality as \"good\" or \"bad\". Sometimes the trainer is shown an image they have rated before, in order to corroborate the quality of the image.
+
+The business logic of this training interface is written in python, because Caffe supports python bindings to its functionality. The images were drawn using the \"pillow\" python package. I opted not to use processing because I was unaware of any processing port to python.
+
+% - Once we have a functioning model, we plan use it in the generation of new images to filter out bad random results.
+
+\section{Compuational Aesthetic Evaluation - Convolutional Neural Network}
+
+I chose to use the Caffe framework for image recognition for its documentation and widespread adoption in the machine learning community.
+
+We will train GoogLeNet on a random subset of the images, and test it on the rest.
 
 \chapter{Results}
 
-Quantitative results here
+I put together a training corpus of 4000 images, each with 3 binary ratings.
+
+I plan to use standard metrics for measuring the effectiveness of our classifier.
+
+I plan to use our model to filter ugly results from our triangle art generator and showcase the quality of the CAE model on free range images.
+
+If time allows, I plan to feed different classes of artwork into the CAE model to test its efficacy at applying aesthetic preferences learned with the abstract shapes to forms of higher complexity.
 
 \chapter{Conclusion}
+
+Given the difficulty of defining art itself, it is no surprise that the criticism and reception of art itself is as nebulous. Yet despite the unclear underpinnings of aesthetic tastes, it is clear that aesthetic judgements are an integral part of everyday life. Short of machine intelligence, computerized judgements of aesthetics will likely never supercede our own, but in combination with our own, there is the potential for computers to make artists out of us all, or at least reduce the cost of aesthetically pleasing design.
+
+The outcome of this experiment may not be clear and but the field of computational aesthetic evaluation will only gain in relevance as we strive to make our world more beautiful.
+
+% - Is there a unifying aspect behind the beauty of various types of things?
+% - Could we teach a computer to find a beautiful solution to a problem by studying how to generate beautiful artwork?
+% - There have been much academic discussion of questions of where to begin with the problem of Computation Aesthetic Evaluation.
+% - the general consesnus is: baby steps.
+% - A deeply interconnected problem
+%   - why?
 
 Qualitative results here
 

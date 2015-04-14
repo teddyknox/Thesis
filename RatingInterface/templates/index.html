@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2>Computational Aesthetic Evaluation Training Interface</h2>
+      <p>{{num_ratings}} ratings for {{num_images}} images</p>
+      <img class="img-responsive" id="canvas"/>
+      <div class="button-row">
+        <button id="ugly" class="btn btn-danger" title="U"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true" title="U"> </span> Ugly</button>
+        <button id="pretty" class="btn btn-success" title="P"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"> </span> Pretty</button>
+      </div>
+      <ul class="list-unstyled">
+        <li>
+          <a href="/pretty">/pretty</a>
+        </li>
+        <li>
+          <a href="/ugly">/ugly</a>
+        </li>
+        <li>
+          <a href="/manifest.txt">/manifest.txt</a>
+        </li>
+    </div>
+  </div>
+</div>
+{% endblock %}
