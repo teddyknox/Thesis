@@ -76,7 +76,7 @@ def generate_manifest():
     images = DBImage.select()
     def generate():
         for image in images:
-            yield "{}\t{:.2f}\n".format(image.filename,image.score)
+            yield "/{}\t{:.2f}\n".format(image.filename,image.score)
     return Response(generate(), mimetype='text/plain')
 
 
