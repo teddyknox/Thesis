@@ -19,7 +19,7 @@ PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.for
 
 app = Flask(__name__)
 
-app.clf = ImagenetClassifier(MODEL_DEF_FILE, PRETRAINED_MODEL_FILE)
+app.clf = Classifier(MODEL_DEF_FILE, PRETRAINED_MODEL_FILE)
 app.clf.net.forward()
 
 # Function to easily find your assets
@@ -143,4 +143,5 @@ def save_image(image):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    app.run(debug=True, host='0.0.0.0', port=opts.port)
+    app.run(debug=True, host='0.0.0.0', port=8080)
+
