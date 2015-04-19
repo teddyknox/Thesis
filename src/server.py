@@ -14,6 +14,7 @@ import sys
 logger = logging.getLogger()
 strm_out = logging.StreamHandler(sys.__stdout__)
 logger.addHandler(strm_out)
+print "SETUP!"
 
 
 
