@@ -1,23 +1,28 @@
 from flask import render_template, send_file, request, abort, send_from_directory, url_for, Flask, Response
 from PIL import Image, ImageDraw
 import uuid
-from os import path
 import os
 from random import randint, uniform
 from colorsys import hls_to_rgb
 from models import Image as DBImage
 from peewee import fn
+import optparse
+from classifier import Classifier
+import logging
+import caffe
 
-max_images = 2000
-max_ratings = 3
+MAX_IMAGES = 2000
+MAX_RATINGS = 3
 
 app = Flask(__name__)
+
 
 # Function to easily find your assets
 # In your template use <link rel=stylesheet href="{{ static('filename') }}">
 app.jinja_env.globals['static'] = (
     lambda filename: url_for('static', filename=filename)
 )
+
 
 @app.route('/')
 def index():
@@ -27,13 +32,14 @@ def index():
 
 
 @app.route('/image')
-def get_image():
+def image():
     """
-    Generates or retrieves an image and redirects the client to it.
+    Returns the path to a generated or retrieved image.
     """
     num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
-    if num_images < max_images:
-        filename = generate_image()
+    if num_images < MAX_IMAGES:
+        image = generate_image()
+        filename = save_image(image)
         DBImage.create(filename=filename)
     else:
         to_rate = (DBImage.select()
@@ -43,9 +49,28 @@ def get_image():
     return ('/image/' + filename, 200, {})
 
 
+@app.route('/pretty_image')
+def pretty_image():
+    """
+    Responds with the path to a generated image, classified as pretty.
+    """
+    image = generate_pretty_image()
+    filename = save_image(image)
+    return ('/image/' + filename, 200, {})
+
+
+@app.route('/smart_pretty')
+def smart_pretty_gallery():
+    """
+    Generates a gallery of images that are classified as pretty.
+    """
+    images = [save_image(i) for i in xrange(60)]
+    return render_template('gallery.html', images=images)
+
+
 @app.route('/image/<string:image_filename>')
 def download_image(image_filename):
-    return send_from_directory(path.abspath('images'), image_filename)
+    return send_from_directory(os.path.abspath('images'), image_filename)
 
 
 @app.route('/image/<string:image_filename>', methods=['POST'])
@@ -56,6 +81,7 @@ def image_label(image_filename):
     image.num_ratings += 1
     image.save()
     return "", 200, {}
+
 
 @app.route('/pretty')
 def pretty_gallery():
@@ -92,8 +118,46 @@ def generate_image():
         fill = tuple(map(lambda x: int(x*256), hls_to_rgb(*fill)))
         outline = tuple(map(lambda x: int(x*256), hls_to_rgb(*outline)))
         d.polygon(xy, fill=fill, outline=outline)
+    return image
+
+
+def generate_pretty_image():
+    pretty = False
+    while not pretty:
+        image = generate_image()
+        caffeImage = caffe.io.load_image(image.toBytes())
+        pretty = app.clf.classify_image(caffeImage)
+    return image
+
+
+def save_image(image):
     filename = str(uuid.uuid4()) + '.png'
     image.save(path.abspath('images/' + filename))
-    return filename
 
-app.run('0.0.0.0', 80, debug=True)
+
+def start_from_terminal(app):
+    optparse.OptionParser()
+    parser.add_option(
+        '-d', '--debug',
+        help="enable debug mode",
+        action="store_true", default=False)
+    parser.add_option(
+        '-p', '--port',
+        help="which port to serve content on",
+        type='int', default=5000)
+    parser.add_option(
+        '-g', '--gpu',
+        help="use gpu mode",
+        action='store_true', default=False)
+
+    opts, args = parser.parse_args()
+    Classifier.default_args.update({'gpu_mode': opts.gpu})
+    app.clf = ImagenetClassifier(**ImagenetClassifier.default_args)
+
+    app.clf.net.forward()
+    if opts.debug:
+        app.run(debug=True, host='0.0.0.0', port=opts.port)
+
+if __name__ == '__main__':
+    logging.getLogger().setLevel(logging.INFO)
+    start_from_terminal(app)
