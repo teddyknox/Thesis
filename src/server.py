@@ -142,16 +142,18 @@ def generate_image():
 def generate_pretty_image():
     pretty = False
     filename = None
-    while not pretty:
+    while True:
         if filename:
             delete_image(filename)
-        filename = generate_image()
-        caffeImage = caffe.io.load_image(APP_DIRNAME + '/images/' + filename)
-        scores = app.clf.predict([caffeImage], oversample=False).flatten()
-        prediction = (-scores).argsort()[0]
-        if prediction == 1 and and scores[1] > 0.9:
-            pretty = True
-    return filename
+        images = [generate_image() for i in xrange(10)]
+        # filename = generate_image()
+        caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
+        scores = app.clf.predict(caffeImages, oversample=False)
+        for x in xrange(scores.shape[0]):
+            score = scores[0]
+            prediction = (-score).argsort()[0]
+            if prediction == 1 and scores[1] > 0.9:
+            return images[x]
 
 
 def delete_image(filename):
