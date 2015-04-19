@@ -1,0 +1,6 @@
++-----------------------------------------------------------------------------+                          │I0418 01:47:15.370940 31871 caffe.cpp:185] loss2/loss1 = 0.602331 (* 0.3 = 0.180699 loss)
+[teddy@ip-10-236-190-156 src]$ vim train_                                                                │I0418 01:47:15.370947 31871 caffe.cpp:185] loss2/top-1 = 0.71582
+train_googlenet.sh  train_lmdb/                                                                          │I0418 01:47:15.370955 31871 caffe.cpp:185] loss2/top-5 = 1
+[teddy@ip-10-236-190-156 src]$ vim train_                                                                │I0418 01:47:15.370965 31871 caffe.cpp:185] loss3/loss3 = 0.583563 (* 1 = 0.583563 loss)
+train_googlenet.sh  train_lmdb/                                                                          │I0418 01:47:15.370971 31871 caffe.cpp:185] loss3/top-1 = 0.720937
+[teddy@ip-10-236-190-156 src]$ vim train_googlenet.sh                                                    │I0418 01:47:15.370978 31871 caffe.cpp:185] loss3/top-5 = 1
