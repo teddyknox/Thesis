@@ -148,7 +148,7 @@ def generate_pretty_image():
         print batch
         if filename:
             delete_image(filename)
-        images = [generate_image() for i in xrange(50)]
+        images = [generate_image() for i in xrange(1)]
         # filename = generate_image()
         caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
         results = app.clf.predict(caffeImages, oversample=False)
