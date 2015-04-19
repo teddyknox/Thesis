@@ -47,6 +47,7 @@ class Classifier(object):
             # predictions = self.labels[indices]
 
             logger.info(scores)
+            print scores
             # In addition to the prediction text, we will also produce
             # the length for the progress bar visualization.
             # meta = [
