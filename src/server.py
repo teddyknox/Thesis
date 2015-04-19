@@ -152,7 +152,7 @@ def generate_pretty_image():
         for x in xrange(scores.shape[0]):
             score = scores[0]
             prediction = (-score).argsort()[0]
-            if prediction == 1 and scores[1] > 0.9:
+            if prediction == 1 and score[1] > 0.9:
                 return images[x]
 
 
