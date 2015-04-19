@@ -127,6 +127,8 @@ def generate_image():
 
 
 def generate_pretty_image():
+    print "generate pretty image"
+    logging.info("let's goooo")
     pretty = False
     filename = None
     while not pretty:
