@@ -155,7 +155,7 @@ def generate_pretty_image():
 
 
 def delete_image(filename):
-    os.remove(APP_DIRNAME + '/images/' + filename)
+    os.remove(filename)
 
 
 if __name__ == '__main__':
