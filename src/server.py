@@ -146,16 +146,15 @@ def generate_pretty_image():
     while not pretty:
         if filename:
             delete_image(filename)
-        filename = APP_DIRNAME + '/images/' + generate_image()
-        caffeImage = caffe.io.load_image(filename)
+        filename = generate_image()
+        caffeImage = caffe.io.load_image(APP_DIRNAME + '/images/' + filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
-        print len(scores)
         pretty = bool((-scores).argsort()[0])
     return filename
 
 
 def delete_image(filename):
-    os.remove(filename)
+    os.remove(APP_DIRNAME + '/images/' + filename)
 
 
 if __name__ == '__main__':
