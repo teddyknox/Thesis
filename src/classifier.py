@@ -44,7 +44,7 @@ class Classifier(object):
         try:
             starttime = time.time()
             scores = self.net.predict([image], oversample=True).flatten()
-            logger.info(scores)
+            logger.error(scores)
             endtime = time.time()
 
             # indices = (-scores).argsort()[:5]
