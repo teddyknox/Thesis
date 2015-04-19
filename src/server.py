@@ -136,7 +136,7 @@ def save_image(image):
 
 
 def start_from_terminal(app):
-    optparse.OptionParser()
+    parser = optparse.OptionParser()
     parser.add_option(
         '-d', '--debug',
         help="enable debug mode",
@@ -152,7 +152,7 @@ def start_from_terminal(app):
 
     opts, args = parser.parse_args()
     Classifier.default_args.update({'gpu_mode': opts.gpu})
-    app.clf = ImagenetClassifier(**ImagenetClassifier.default_args)
+    app.clf = Classifier(**Classifier.default_args)
 
     app.clf.net.forward()
     if opts.debug:

@@ -14,7 +14,7 @@ class Classifier(object):
         'model_def_file': (
             '{}/model/deploy.prototxt'.format(APP_DIRNAME)),
         'pretrained_model_file': (
-            '{}/models/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)),
+            '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)),
         # 'mean_file': (
             # '{}/python/caffe/imagenet/ilsvrc_2012_mean.npy'.format(APP_DIRNAME)),
         # 'class_labels_file': (
