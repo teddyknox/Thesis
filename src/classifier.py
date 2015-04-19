@@ -5,6 +5,10 @@ import pandas as pd
 import time
 import logging
 
+loggingHandler = logging.FileHandler('results.log')
+logger = logging.getLogger()
+logger.addHandler(loggingHandler)
+
 
 class Classifier(object):
     def __init__(self, model_def_file, pretrained_model_file, image_dim=256, raw_scale=255.0, gpu_mode=True):
@@ -40,14 +44,13 @@ class Classifier(object):
         try:
             starttime = time.time()
             scores = self.net.predict([image], oversample=True).flatten()
+            logger.info(scores)
             endtime = time.time()
 
             # indices = (-scores).argsort()[:5]
             # predictions = self.labels[indices]
 
-            logging.info(scores)
-            print scores
-            print "Classifying"
+
             # In addition to the prediction text, we will also produce
             # the length for the progress bar visualization.
             # meta = [
