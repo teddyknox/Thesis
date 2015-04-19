@@ -11,10 +11,6 @@ import logging
 import caffe
 import sys
 
-print "SETUP!"
-
-
-
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
@@ -145,7 +141,6 @@ def generate_image():
 
 def generate_pretty_image():
     print "GENERATE PRETTY IMAGE"
-    logger.info("let's goooo")
     pretty = False
     filename = None
     while not pretty:
