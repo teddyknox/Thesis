@@ -148,4 +148,4 @@ def delete_image(filename):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=bool(os.env.get('DEBUG', 1)), host='0.0.0.0', port=os.env.get('PORT', '8080'))
