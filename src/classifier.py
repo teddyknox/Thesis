@@ -29,8 +29,7 @@ class Classifier(object):
     default_args['image_dim'] = 256
     default_args['raw_scale'] = 255.
 
-    def __init__(self, model_def_file, pretrained_model_file, mean_file,
-                 raw_scale, class_labels_file, bet_file, image_dim, gpu_mode):
+    def __init__(self, model_def_file, pretrained_model_file, mean_file, raw_scale, image_dim, gpu_mode):
         logging.info('Loading net and associated files...')
         if gpu_mode:
             caffe.set_mode_gpu()
