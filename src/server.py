@@ -19,6 +19,8 @@ PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.for
 GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 PORT = int(os.environ.get('PORT', '8080'))
+CONFIDENCE_THRESHOLD = 0.6
+BATCH_SIZE = 30
 
 if GPU_MODE:
     caffe.set_mode_gpu()
@@ -49,7 +51,7 @@ def index():
     return render_template('index.html', num_ratings=num_ratings, num_images=num_images)
 
 
-@app.route('/image')
+@app.route('/normal_image')
 def image():
     """
     Returns the path to a generated or retrieved image.
@@ -66,7 +68,7 @@ def image():
     return ('/image/' + filename, 200, {})
 
 
-@app.route('/pretty_image')
+@app.route('/image')
 def pretty_image():
     """
     Responds with the path to a generated image, classified as pretty.
@@ -148,16 +150,17 @@ def generate_pretty_image():
         print batch
         if filename:
             delete_image(filename)
-        images = [generate_image() for i in xrange(1)]
+        images = [generate_image() for i in xrange(BATCH_SIZE)]
         # filename = generate_image()
         caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
         results = app.clf.predict(caffeImages, oversample=False)
         for x in xrange(results.shape[0]):
             scores = results[x]
             prediction = (-scores).argsort()[0]
-            if prediction == 1 and scores[1] > 0.95:
-                print "pretty one found!"
+            if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
                 return images[x]
+            else:
+                delete_image(images[x])
 
 
 def delete_image(filename):
