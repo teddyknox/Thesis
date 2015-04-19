@@ -148,14 +148,14 @@ def generate_pretty_image():
         print batch
         if filename:
             delete_image(filename)
-        images = [generate_image() for i in xrange(20)]
+        images = [generate_image() for i in xrange(50)]
         # filename = generate_image()
         caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
         results = app.clf.predict(caffeImages, oversample=False)
         for x in xrange(results.shape[0]):
             scores = results[x]
             prediction = (-scores).argsort()[0]
-            if prediction == 1 and scores[1] > 0.9:
+            if prediction == 1 and scores[1] > 0.95:
                 print "pretty one found!"
                 return images[x]
 
