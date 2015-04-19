@@ -19,7 +19,7 @@ GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 PORT = int(os.environ.get('PORT', '8080'))
 
-if gpu_mode:
+if GPU_MODE:
     caffe.set_mode_gpu()
 else:
     caffe.set_mode_cpu()
