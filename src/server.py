@@ -31,7 +31,7 @@ app.clf = caffe.Classifier(
     # mean=np.load(mean_file).mean(1).mean(1),
     channel_swap=(2, 1, 0)
 )
-app.clf.net.forward()
+app.clf.forward()
 
 # Function to easily find your assets
 # In your template use <link rel=stylesheet href="{{ static('filename') }}">
