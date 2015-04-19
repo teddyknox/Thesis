@@ -38,7 +38,6 @@ app.clf = caffe.Classifier(
 )
 app.clf.forward()
 
-print "HELLO!"
 
 # Function to easily find your assets
 # In your template use <link rel=stylesheet href="{{ static('filename') }}">
@@ -85,7 +84,7 @@ def smart_pretty_gallery():
     """
     Generates a gallery of images that are classified as pretty.
     """
-    images = [generate_image() for i in xrange(60)]
+    images = [generate_pretty_image() for i in xrange(60)]
     return render_template('gallery.html', images=images)
 
 
@@ -145,7 +144,7 @@ def generate_image():
 
 
 def generate_pretty_image():
-    print "generate pretty image"
+    print "GENERATE PRETTY IMAGE"
     logger.info("let's goooo")
     pretty = False
     filename = None
