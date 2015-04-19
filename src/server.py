@@ -153,7 +153,7 @@ def generate_pretty_image():
             score = scores[0]
             prediction = (-score).argsort()[0]
             if prediction == 1 and scores[1] > 0.9:
-            return images[x]
+                return images[x]
 
 
 def delete_image(filename):
