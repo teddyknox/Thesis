@@ -137,7 +137,7 @@ def generate_pretty_image():
 
 def save_image(image):
     filename = str(uuid.uuid4()) + '.png'
-    image.save(path.abspath('images/' + filename))
+    image.save(os.path.abspath('images/' + filename))
 
 
 if __name__ == '__main__':
