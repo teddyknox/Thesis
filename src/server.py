@@ -146,7 +146,7 @@ def generate_pretty_image():
     while not pretty:
         if filename:
             delete_image(filename)
-        filename = generate_image()
+        filename = APP_DIRNAME + '/images/' + generate_image()
         caffeImage = caffe.io.load_image(filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
         print len(scores)
