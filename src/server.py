@@ -150,7 +150,7 @@ def generate_pretty_image():
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
         prediction = (-scores).argsort()[0]
         # print pretty
-        print scores[prediction]
+        print prediction, scores[prediction]
         pretty = bool(prediction)
     return filename
 
