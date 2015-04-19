@@ -13,9 +13,14 @@ import caffe
 
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
+APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
+MODEL_DEF_FILE = '{}/model/deploy.prototxt'.format(APP_DIRNAME)
+PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
 
 app = Flask(__name__)
 
+app.clf = ImagenetClassifier(MODEL_DEF_FILE, PRETRAINED_MODEL_FILE)
+app.clf.net.forward()
 
 # Function to easily find your assets
 # In your template use <link rel=stylesheet href="{{ static('filename') }}">
@@ -135,29 +140,6 @@ def save_image(image):
     image.save(path.abspath('images/' + filename))
 
 
-def start_from_terminal(app):
-    optparse.OptionParser()
-    parser.add_option(
-        '-d', '--debug',
-        help="enable debug mode",
-        action="store_true", default=False)
-    parser.add_option(
-        '-p', '--port',
-        help="which port to serve content on",
-        type='int', default=5000)
-    parser.add_option(
-        '-g', '--gpu',
-        help="use gpu mode",
-        action='store_true', default=False)
-
-    opts, args = parser.parse_args()
-    Classifier.default_args.update({'gpu_mode': opts.gpu})
-    app.clf = ImagenetClassifier(**ImagenetClassifier.default_args)
-
-    app.clf.net.forward()
-    if opts.debug:
-        app.run(debug=True, host='0.0.0.0', port=opts.port)
-
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    start_from_terminal(app)
+    app.run(debug=True, host='0.0.0.0', port=opts.port)
