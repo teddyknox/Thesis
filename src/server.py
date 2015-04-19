@@ -17,6 +17,8 @@ APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/model/deploy.prototxt'.format(APP_DIRNAME)
 PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
 
+logger = logging.getLogger('werkzeug')
+
 app = Flask(__name__)
 
 app.clf = Classifier(MODEL_DEF_FILE, PRETRAINED_MODEL_FILE)
@@ -128,7 +130,7 @@ def generate_image():
 
 def generate_pretty_image():
     print "generate pretty image"
-    logging.info("let's goooo")
+    logger.info("let's goooo")
     pretty = False
     filename = None
     while not pretty:
