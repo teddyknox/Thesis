@@ -9,6 +9,13 @@ from peewee import fn
 import optparse
 import logging
 import caffe
+import sys
+
+logger = logging.getLogger()
+strm_out = logging.StreamHandler(sys.__stdout__)
+root_logger.addHandler(strm_out)
+
+
 
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
@@ -157,5 +164,5 @@ def delete_image(filename):
 
 
 if __name__ == '__main__':
-    logging.getLogger().setLevel(logging.INFO)
+    # logging.getLogger().setLevel(logging.INFO)
     app.run(debug=DEBUG, host='0.0.0.0', port=PORT)
