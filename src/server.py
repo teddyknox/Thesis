@@ -43,8 +43,7 @@ def image():
     """
     num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
     if num_images < MAX_IMAGES:
-        image = generate_image()
-        filename = save_image(image)
+        filename = generate_image()
         DBImage.create(filename=filename)
     else:
         to_rate = (DBImage.select()
