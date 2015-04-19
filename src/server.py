@@ -140,7 +140,6 @@ def generate_image():
 
 
 def generate_pretty_image():
-    print "GENERATE PRETTY IMAGE"
     pretty = False
     filename = None
     while not pretty:
@@ -149,7 +148,9 @@ def generate_pretty_image():
         filename = generate_image()
         caffeImage = caffe.io.load_image(APP_DIRNAME + '/images/' + filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
-        pretty = bool((-scores).argsort()[0])
+        pretty = (-scores).argsort()[:5]
+        print pretty
+        pretty = bool(pretty[0])
     return filename
 
 
