@@ -11,9 +11,6 @@ import logging
 import caffe
 import sys
 
-# logger = logging.getLogger()
-# strm_out = logging.StreamHandler(sys.__stdout__)
-# logger.addHandler(strm_out)
 print "SETUP!"
 
 
@@ -156,6 +153,7 @@ def generate_pretty_image():
         filename = generate_image()
         caffeImage = caffe.io.load_image(filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
+        print scores
         pretty = bool((-scores).argsort()[0])
     return filename
 
@@ -165,5 +163,4 @@ def delete_image(filename):
 
 
 if __name__ == '__main__':
-    # logging.getLogger().setLevel(logging.INFO)
     app.run(debug=DEBUG, host='0.0.0.0', port=PORT)
