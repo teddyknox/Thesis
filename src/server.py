@@ -148,12 +148,10 @@ def generate_pretty_image():
         filename = generate_image()
         caffeImage = caffe.io.load_image(APP_DIRNAME + '/images/' + filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
-        pretty = (-scores).argsort()[:5]
-        print map(lambda s: scores[s], pretty)
-        print pretty
-        print
+        prediction = (-scores).argsort()[0]
         # print pretty
-        pretty = bool(pretty[0])
+        print scores[prediction]
+        pretty = bool(prediction)
     return filename
 
 
