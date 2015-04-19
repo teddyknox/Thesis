@@ -38,6 +38,8 @@ app.clf = caffe.Classifier(
 )
 app.clf.forward()
 
+print "HELLO!"
+
 # Function to easily find your assets
 # In your template use <link rel=stylesheet href="{{ static('filename') }}">
 app.jinja_env.globals['static'] = (
