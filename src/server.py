@@ -13,7 +13,7 @@ import sys
 
 logger = logging.getLogger()
 strm_out = logging.StreamHandler(sys.__stdout__)
-root_logger.addHandler(strm_out)
+logger.addHandler(strm_out)
 
 
 
