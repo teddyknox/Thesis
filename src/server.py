@@ -69,7 +69,7 @@ def smart_pretty_gallery():
     """
     Generates a gallery of images that are classified as pretty.
     """
-    images = [save_image(i) for i in xrange(60)]
+    images = [save_image(generate_image()) for i in xrange(60)]
     return render_template('gallery.html', images=images)
 
 
@@ -138,7 +138,6 @@ def generate_pretty_image():
 def save_image(image):
     filename = str(uuid.uuid4()) + '.png'
     image.save(path.abspath('images/' + filename))
-
 
 
 if __name__ == '__main__':
