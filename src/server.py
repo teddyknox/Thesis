@@ -123,7 +123,7 @@ def generate_image():
         outline = tuple(map(lambda x: int(x*256), hls_to_rgb(*outline)))
         d.polygon(xy, fill=fill, outline=outline)
     filename = str(uuid.uuid4()) + '.png'
-    image.save(path.abspath('images/' + filename))
+    image.save(os.path.abspath('images/' + filename))
     return filename
 
 
@@ -146,4 +146,3 @@ def delete_image(filename):
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
     app.run(debug=True, host='0.0.0.0', port=8080)
-
