@@ -43,8 +43,7 @@ def image():
     """
     num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
     if num_images < MAX_IMAGES:
-        image = generate_image()
-        filename = save_image(image)
+        filename = generate_image()
         DBImage.create(filename=filename)
     else:
         to_rate = (DBImage.select()
@@ -59,8 +58,7 @@ def pretty_image():
     """
     Responds with the path to a generated image, classified as pretty.
     """
-    image = generate_pretty_image()
-    filename = save_image(image)
+    filename = generate_pretty_image()
     return ('/image/' + filename, 200, {})
 
 
@@ -69,7 +67,7 @@ def smart_pretty_gallery():
     """
     Generates a gallery of images that are classified as pretty.
     """
-    images = [save_image(generate_image()) for i in xrange(60)]
+    images = [generate_image() for i in xrange(60)]
     return render_template('gallery.html', images=images)
 
 
@@ -123,21 +121,25 @@ def generate_image():
         fill = tuple(map(lambda x: int(x*256), hls_to_rgb(*fill)))
         outline = tuple(map(lambda x: int(x*256), hls_to_rgb(*outline)))
         d.polygon(xy, fill=fill, outline=outline)
-    return image
+    filename = str(uuid.uuid4()) + '.png'
+    image.save(path.abspath('images/' + filename))
+    return filename
 
 
 def generate_pretty_image():
     pretty = False
+    filename = None
     while not pretty:
-        image = generate_image()
-        caffeImage = caffe.io.load_image(image.toBytes())
+        if filename:
+            delete_image(filename)
+        filename = generate_image()
+        caffeImage = caffe.io.load_image(filename)
         pretty = app.clf.classify_image(caffeImage)
-    return image
+    return filename
 
 
-def save_image(image):
-    filename = str(uuid.uuid4()) + '.png'
-    image.save(os.path.abspath('images/' + filename))
+def delete_image(filename):
+    os.remove(APP_DIRNAME + '/images/' + filename)
 
 
 if __name__ == '__main__':
