@@ -149,9 +149,8 @@ def generate_pretty_image():
         caffeImage = caffe.io.load_image(APP_DIRNAME + '/images/' + filename)
         scores = app.clf.predict([caffeImage], oversample=False).flatten()
         prediction = (-scores).argsort()[0]
-        # print pretty
-        print prediction, scores[prediction]
-        pretty = bool(prediction)
+        if prediction == 1 and and scores[1] > 0.9:
+            pretty = True
     return filename
 
 
