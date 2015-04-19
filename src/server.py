@@ -7,7 +7,6 @@ from colorsys import hls_to_rgb
 from models import Image as DBImage
 from peewee import fn
 import optparse
-from classifier import Classifier
 import logging
 import caffe
 
@@ -16,12 +15,22 @@ MAX_RATINGS = 3
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/model/deploy.prototxt'.format(APP_DIRNAME)
 PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
+GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
+DEBUG = os.environ.get('DEBUG', 'true') == 'true'
+PORT = int(os.environ.get('PORT', '8080'))
 
-logger = logging.getLogger('werkzeug')
+if gpu_mode:
+    caffe.set_mode_gpu()
+else:
+    caffe.set_mode_cpu()
 
 app = Flask(__name__)
-
-app.clf = Classifier(MODEL_DEF_FILE, PRETRAINED_MODEL_FILE)
+app.clf = caffe.Classifier(
+    MODEL_DEF_FILE, PRETRAINED_MODEL_FILE,
+    image_dims=(255, 255), raw_scale=256.0,
+    # mean=np.load(mean_file).mean(1).mean(1),
+    channel_swap=(2, 1, 0)
+)
 app.clf.net.forward()
 
 # Function to easily find your assets
@@ -138,7 +147,8 @@ def generate_pretty_image():
             delete_image(filename)
         filename = generate_image()
         caffeImage = caffe.io.load_image(filename)
-        pretty = app.clf.classify_image(caffeImage)
+        scores = app.clf.predict([caffeImage], oversample=False).flatten()
+        pretty = bool((-scores).argsort()[0])
     return filename
 
 
@@ -148,4 +158,4 @@ def delete_image(filename):
 
 if __name__ == '__main__':
     logging.getLogger().setLevel(logging.INFO)
-    app.run(debug=os.environ.get('DEBUG', 'true')=='true', host='0.0.0.0', port=int(os.environ.get('PORT', '8080')))
+    app.run(debug=DEBUG, host='0.0.0.0', port=PORT)
