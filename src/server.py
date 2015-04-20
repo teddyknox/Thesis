@@ -155,13 +155,14 @@ def generate_pretty_image():
         # filename = generate_image()
         caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
         results = app.clf.predict(caffeImages, oversample=False)
-        for x in xrange(results.shape[0]):
+        for x in range(results.shape[0]):
             scores = results[x]
             prediction = (-scores).argsort()[0]
             if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+                for y in range(x + 1, results.shape[0]):
+                    delete_image(images[y])
                 return images[x]
             else:
-                print "deleting"
                 delete_image(images[x])
 
 
