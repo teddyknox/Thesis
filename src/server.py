@@ -70,9 +70,10 @@ def image():
                               .limit(1))[0]
             filename = to_rate.filename
     elif mode == 'filtered':
+        print "filtered"
         filename = generate_image()
         DBImage.create(filename=filename)
-        
+
     return ('/image/' + filename, 200, {})
 
 
