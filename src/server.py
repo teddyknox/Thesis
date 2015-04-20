@@ -140,26 +140,26 @@ def generate_image():
     return filename
 
 
-def generate_pretty_image():
-    x = generator()
-    return next(x)
+def pretty_image_generator():
+    pretty_images = []
+    while True:
+        while len(images) == 0:
+            images = [generate_image() for i in xrange(BATCH_SIZE)]
+            caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
+            results = app.clf.predict(caffeImages, oversample=False)
+            for x in range(results.shape[0]):
+                scores = results[x]
+                prediction = (-scores).argsort()[0]
+                if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+                    pretty_images.append(images[x])
+                else:
+                    # throw away image
+                    os.remove(APP_DIRNAME + '/images/' + images[x])
+        yield pretty_images.pop(0)
 
-    def generator():
-        pretty_images = []
-        while True:
-            while len(images) == 0:
-                images = [generate_image() for i in xrange(BATCH_SIZE)]
-                caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
-                results = app.clf.predict(caffeImages, oversample=False)
-                for x in range(results.shape[0]):
-                    scores = results[x]
-                    prediction = (-scores).argsort()[0]
-                    if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
-                        pretty_images.append(images[x])
-                    else:
-                        # throw away image
-                        os.remove(APP_DIRNAME + '/images/' + images[x])
-            yield pretty_images.pop(0)
+pig = pretty_image_generator()
+def generate_pretty_image():
+    return next(pig)
 
 
 if __name__ == '__main__':
