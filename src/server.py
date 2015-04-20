@@ -51,30 +51,28 @@ def index():
     return render_template('index.html', num_ratings=num_ratings, num_images=num_images)
 
 
-@app.route('/normal_image')
+@app.route('/image')
 def image():
     """
-    Returns the path to a generated or retrieved image.
+    Responds with the path to a generated or retrieved image, optionally filtered as pretty.
     """
-    num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
-    if num_images < MAX_IMAGES:
+    mode = request.args.get('mode', 'filtered')
+    if mode == 'hybrid':
+        pass
+    elif mode == 'standard':
+        num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
+        if num_images < MAX_IMAGES:
+            filename = generate_image()
+            DBImage.create(filename=filename)
+        else:
+            to_rate = (DBImage.select()
+                              .order_by(DBImage.num_ratings, fn.Random())
+                              .limit(1))[0]
+            filename = to_rate.filename
+    elif mode == 'filtered':
         filename = generate_image()
         DBImage.create(filename=filename)
-    else:
-        to_rate = (DBImage.select()
-                          .order_by(DBImage.num_ratings, fn.Random())
-                          .limit(1))
-        filename = to_rate[0].filename
-    return ('/image/' + filename, 200, {})
-
-
-@app.route('/image')
-def pretty_image():
-    """
-    Responds with the path to a generated image, classified as pretty.
-    """
-    filename = generate_pretty_image()
-    DBImage.create(filename=filename)
+        
     return ('/image/' + filename, 200, {})
 
 
@@ -143,31 +141,25 @@ def generate_image():
 
 
 def generate_pretty_image():
-    pretty = False
-    filename = None
-    batch = 0
-    while True:
-        batch += 1
-        print batch
-        if filename:
-            delete_image(filename)
-        images = [generate_image() for i in xrange(BATCH_SIZE)]
-        # filename = generate_image()
-        caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
-        results = app.clf.predict(caffeImages, oversample=False)
-        for x in range(results.shape[0]):
-            scores = results[x]
-            prediction = (-scores).argsort()[0]
-            if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
-                for y in range(x + 1, results.shape[0]):
-                    delete_image(images[y])
-                return images[x]
-            else:
-                delete_image(images[x])
+    x = generator()
+    return next(x)
 
-
-def delete_image(filename):
-    os.remove(APP_DIRNAME + '/images/' + filename)
+    def generator():
+        pretty_images = []
+        while True:
+            while len(images) == 0:
+                images = [generate_image() for i in xrange(BATCH_SIZE)]
+                caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
+                results = app.clf.predict(caffeImages, oversample=False)
+                for x in range(results.shape[0]):
+                    scores = results[x]
+                    prediction = (-scores).argsort()[0]
+                    if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+                        pretty_images.append(images[x])
+                    else:
+                        # throw away image
+                        os.remove(APP_DIRNAME + '/images/' + images[x])
+            yield pretty_images.pop(0)
 
 
 if __name__ == '__main__':
