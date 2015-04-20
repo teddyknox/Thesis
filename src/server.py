@@ -74,6 +74,7 @@ def pretty_image():
     Responds with the path to a generated image, classified as pretty.
     """
     filename = generate_pretty_image()
+    DBImage.create(filename=filename)
     return ('/image/' + filename, 200, {})
 
 
@@ -160,6 +161,7 @@ def generate_pretty_image():
             if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
                 return images[x]
             else:
+                print "deleting"
                 delete_image(images[x])
 
 
