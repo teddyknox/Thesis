@@ -14,8 +14,8 @@ import sys
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
-MODEL_DEF_FILE = '{}/model/deploy.prototxt'.format(APP_DIRNAME)
-PRETRAINED_MODEL_FILE = '{}/model/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
+MODEL_DEF_FILE = '{}/models/googlenet/deploy.prototxt'.format(APP_DIRNAME)
+PRETRAINED_MODEL_FILE = '{}/models/googlenet/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
 GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 PORT = int(os.environ.get('PORT', '8080'))
