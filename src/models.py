@@ -1,6 +1,6 @@
 from peewee import *
 
-db = SqliteDatabase('./images.db')
+db = SqliteDatabase('data/images.db')
 
 
 class Image(Model):

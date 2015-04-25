@@ -9,7 +9,7 @@ from peewee import fn
 import optparse
 import logging
 import caffe
-import sys
+import generators
 
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
@@ -43,131 +43,8 @@ app.jinja_env.globals['static'] = (
     lambda filename: url_for('static', filename=filename)
 )
 
+from views import *
 
-@app.route('/')
-def index():
-    num_ratings = DBImage.select(fn.Sum(DBImage.num_ratings)).scalar()
-    num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
-    return render_template('index.html', num_ratings=num_ratings, num_images=num_images)
-
-
-@app.route('/image')
-def image():
-    """
-    Responds with the path to a generated or retrieved image, optionally filtered as pretty.
-    """
-    mode = request.args.get('mode', 'filtered')
-    if mode == 'hybrid':
-        pass
-    elif mode == 'standard':
-        num_images = DBImage.select(fn.Count(DBImage.id)).scalar()
-        if num_images < MAX_IMAGES:
-            filename = generate_image()
-            DBImage.create(filename=filename)
-        else:
-            to_rate = (DBImage.select()
-                              .order_by(DBImage.num_ratings, fn.Random())
-                              .limit(1))[0]
-            filename = to_rate.filename
-    elif mode == 'filtered':
-        filename = generate_pretty_image()
-        DBImage.create(filename=filename)
-
-    return ('/image/' + filename, 200, {})
-
-
-@app.route('/image/<string:image_filename>')
-def download_image(image_filename):
-    return send_from_directory(os.path.abspath('images'), image_filename)
-
-
-@app.route('/image/<string:image_filename>', methods=['POST'])
-def image_label(image_filename):
-    rating = int(request.form['label'])
-    image = DBImage.get(filename=image_filename)
-    image.score = ((image.score * image.num_ratings) + rating) / (image.num_ratings + 1)
-    image.num_ratings += 1
-    image.save()
-    return "", 200, {}
-
-
-@app.route('/pretty')
-def pretty_gallery():
-    best = DBImage.select(DBImage.filename).order_by(DBImage.score.desc()).limit(300)
-    best = map(lambda i: i.filename, best)
-    return render_template('gallery.html', images=best)
-
-
-@app.route('/ugly')
-def ugly_gallery():
-    worst = DBImage.select(DBImage.filename).order_by(DBImage.score.asc()).limit(300)
-    worst = map(lambda i: i.filename, worst)
-    return render_template('gallery.html', images=worst)
-
-
-@app.route('/smart_pretty')
-def smart_pretty_gallery():
-    """
-    Generates a gallery of images that are classified as pretty.
-    """
-    images = [generate_pretty_image() for i in xrange(60)]
-    return render_template('gallery.html', images=images)
-
-
-@app.route('/sidebyside')
-def side_by_side_gallery():
-    pretty = DBImage.select().order_by(DBImage.score.desc()).limit(100)
-    ugly = DBImage.select().order_by(DBImage.score.asc()).limit(100)
-    smart_pretty = 
-
-
-
-@app.route('/manifest.txt')
-def generate_manifest():
-    images = DBImage.select()
-    def generate():
-        for image in images:
-            yield "/{}\t{:.2f}\n".format(image.filename,image.score)
-    return Response(generate(), mimetype='text/plain')
-
-
-def generate_image():
-    bg = (uniform(0, 360), uniform(0, 1), uniform(0, 1))
-    bg = tuple(map(lambda x: int(x*256), hls_to_rgb(*bg)))
-    image = Image.new('RGB', (256, 256), bg)
-    d = ImageDraw.Draw(image)
-    for i in xrange(randint(3, 5)):
-        xy = [(randint(0, 255), randint(0, 255)) for i in xrange(3)]
-        fill = (uniform(0, 360), uniform(0, 1), uniform(0, 1))
-        outline = (fill[0], min(fill[1] + .1, 1), fill[2])
-        fill = tuple(map(lambda x: int(x*256), hls_to_rgb(*fill)))
-        outline = tuple(map(lambda x: int(x*256), hls_to_rgb(*outline)))
-        d.polygon(xy, fill=fill, outline=outline)
-    filename = str(uuid.uuid4()) + '.png'
-    image.save(os.path.abspath('images/' + filename))
-    return filename
-
-
-def pretty_image_generator():
-    pretty_images = []
-    while True:
-        while len(pretty_images) == 0:
-            images = [generate_image() for i in xrange(BATCH_SIZE)]
-            caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
-            results = app.clf.predict(caffeImages, oversample=False)
-            for x in range(results.shape[0]):
-                scores = results[x]
-                prediction = (-scores).argsort()[0]
-                if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
-                    pretty_images.append(images[x])
-                else:
-                    # throw away image
-                    os.remove(APP_DIRNAME + '/images/' + images[x])
-        yield pretty_images.pop(0)
-
-pig = pretty_image_generator()
-def generate_pretty_image():
-    return next(pig)
 
 
 if __name__ == '__main__':
