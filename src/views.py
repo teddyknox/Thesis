@@ -74,8 +74,8 @@ def smart_pretty_gallery():
     return render_template('gallery.html', images=images)
 
 
-@app.route('/sidebyside')
-def side_by_side_gallery():
-    pretty = Image.select().order_by(Image.score.desc()).limit(100)
-    ugly = Image.select().order_by(Image.score.asc()).limit(100)
-    smart_pretty =
+# @app.route('/sidebyside')
+# def side_by_side_gallery():
+#     pretty = Image.select().order_by(Image.score.desc()).limit(100)
+#     ugly = Image.select().order_by(Image.score.asc()).limit(100)
+    # smart_pretty =
