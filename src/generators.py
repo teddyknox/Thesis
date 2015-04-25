@@ -8,6 +8,9 @@ import os
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)
 PRETRAINED_MODEL_FILE = '{}/classifiers/googlenet/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
+BATCH_SIZE = 30
+CONFIDENCE_THRESHOLD = 0.6
+
 
 GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
 

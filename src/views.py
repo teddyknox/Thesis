@@ -3,8 +3,12 @@ from models import Image
 from peewee import fn
 import os
 from server import app
+import generators
 
 IMAGES_DIR = os.path.abspath('data/images')
+MAX_IMAGES = 2000
+MAX_RATINGS = 3
+
 
 @app.route('/')
 def index():

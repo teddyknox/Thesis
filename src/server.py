@@ -1,14 +1,9 @@
 #!/usr/bin/env python
 from flask import Flask, url_for
 import os
-import generators
 
-MAX_IMAGES = 2000
-MAX_RATINGS = 3
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 PORT = int(os.environ.get('PORT', '8080'))
-CONFIDENCE_THRESHOLD = 0.6
-BATCH_SIZE = 30
 
 app = Flask(__name__)
 
