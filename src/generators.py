@@ -4,7 +4,7 @@ from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
 import os
-from server import IMAGES_DIR
+from app import IMAGES_DIR
 
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)

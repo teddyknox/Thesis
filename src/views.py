@@ -1,7 +1,7 @@
 from flask import render_template, send_file, request, abort, send_from_directory, Response
 from peewee import fn
 import os
-from server import app
+from app import app
 
 from generators import *
 from models import *

@@ -2,9 +2,6 @@
 from flask import Flask, url_for
 import os
 
-DEBUG = os.environ.get('DEBUG', 'true') == 'true'
-PORT = int(os.environ.get('PORT', '8080'))
-
 # Shared config variables
 IMAGES_DIR = os.path.abspath('data/images')
 
@@ -19,4 +16,4 @@ app.jinja_env.globals['static'] = (
 from views import *
 
 if __name__ == '__main__':
-    app.run(debug=DEBUG, host='0.0.0.0', port=PORT)
+    app.run(debug=True, host='0.0.0.0', port=8080)
