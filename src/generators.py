@@ -1,4 +1,27 @@
 import caffe
+from random import randint, uniform
+from colorsys import hls_to_rgb
+import uuid
+from PIL import Image, ImageDraw
+
+APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
+MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)
+PRETRAINED_MODEL_FILE = '{}/classifiers/googlenet/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
+
+GPU_MODE = os.environ.get('GPU_MODE', 'true') == 'true'
+
+if GPU_MODE:
+    caffe.set_mode_gpu()
+else:
+    caffe.set_mode_cpu()
+
+classifier = caffe.Classifier(
+    MODEL_DEF_FILE, PRETRAINED_MODEL_FILE,
+    image_dims=(255, 255), raw_scale=256.0,
+    # mean=np.load(mean_file).mean(1).mean(1),
+    channel_swap=(2, 1, 0)
+)
+classifier.forward()
 
 def generate_image():
     bg = (uniform(0, 360), uniform(0, 1), uniform(0, 1))
@@ -23,7 +46,7 @@ def pretty_image_generator():
         while len(pretty_images) == 0:
             images = [generate_image() for i in xrange(BATCH_SIZE)]
             caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
-            results = app.clf.predict(caffeImages, oversample=False)
+            results = classifier.predict(caffeImages, oversample=False)
             for x in range(results.shape[0]):
                 scores = results[x]
                 prediction = (-scores).argsort()[0]
