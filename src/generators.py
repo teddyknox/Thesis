@@ -50,7 +50,7 @@ def pretty_image_generator():
     while True:
         while len(pretty_images) == 0:
             images = [generate_image() for i in xrange(BATCH_SIZE)]
-            caffeImages = [caffe.io.load_image(APP_DIRNAME + '/images/' + filename) for filename in images]
+            caffeImages = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename)) for filename in images]
             results = classifier.predict(caffeImages, oversample=False)
             for x in range(results.shape[0]):
                 scores = results[x]
@@ -59,7 +59,7 @@ def pretty_image_generator():
                     pretty_images.append(images[x])
                 else:
                     # throw away image
-                    os.remove(APP_DIRNAME + '/images/' + images[x])
+                    os.remove(os.path.join(IMAGES_DIR, images[x]))
         yield pretty_images.pop(0)
 
 pig = pretty_image_generator()
