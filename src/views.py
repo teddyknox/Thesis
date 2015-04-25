@@ -6,7 +6,6 @@ from server import app
 from generators import *
 from models import *
 
-IMAGES_DIR = os.path.abspath('data/images')
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
 
@@ -16,6 +15,11 @@ def index():
     num_ratings = Image.select(fn.Sum(Image.num_ratings)).scalar()
     num_images = Image.select(fn.Count(Image.id)).scalar()
     return render_template('index.html', num_ratings=num_ratings, num_images=num_images)
+
+
+@app.route('/image/<string:image_filename>')
+def download_image(image_filename):
+    return send_from_directory(IMAGES_DIR, image_filename)
 
 
 @app.route('/image')
@@ -41,11 +45,6 @@ def image():
         Image.create(filename=filename)
 
     return ('/image/' + filename, 200, {})
-
-
-@app.route('/image/<string:image_filename>')
-def download_image(image_filename):
-    return send_from_directory(IMAGES_DIR, image_filename)
 
 
 @app.route('/image/<string:image_filename>', methods=['POST'])

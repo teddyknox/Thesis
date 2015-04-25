@@ -4,6 +4,7 @@ from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
 import os
+from server import IMAGES_DIR
 
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)
@@ -40,7 +41,7 @@ def generate_image():
         outline = tuple(map(lambda x: int(x*256), hls_to_rgb(*outline)))
         d.polygon(xy, fill=fill, outline=outline)
     filename = str(uuid.uuid4()) + '.png'
-    image.save(os.path.abspath('images/' + filename))
+    image.save(os.path.join(IMAGES_DIR, filename))
     return filename
 
 

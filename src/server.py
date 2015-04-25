@@ -5,6 +5,9 @@ import os
 DEBUG = os.environ.get('DEBUG', 'true') == 'true'
 PORT = int(os.environ.get('PORT', '8080'))
 
+# Shared config variables
+IMAGES_DIR = os.path.abspath('data/images')
+
 app = Flask(__name__)
 
 # Function to easily find your assets
