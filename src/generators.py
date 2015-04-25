@@ -3,6 +3,7 @@ from random import randint, uniform
 from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
+import os
 
 APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)
