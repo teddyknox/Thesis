@@ -76,15 +76,6 @@ def image():
     return ('/image/' + filename, 200, {})
 
 
-@app.route('/smart_pretty')
-def smart_pretty_gallery():
-    """
-    Generates a gallery of images that are classified as pretty.
-    """
-    images = [generate_pretty_image() for i in xrange(60)]
-    return render_template('gallery.html', images=images)
-
-
 @app.route('/image/<string:image_filename>')
 def download_image(image_filename):
     return send_from_directory(os.path.abspath('images'), image_filename)
@@ -112,6 +103,23 @@ def ugly_gallery():
     worst = DBImage.select(DBImage.filename).order_by(DBImage.score.asc()).limit(300)
     worst = map(lambda i: i.filename, worst)
     return render_template('gallery.html', images=worst)
+
+
+@app.route('/smart_pretty')
+def smart_pretty_gallery():
+    """
+    Generates a gallery of images that are classified as pretty.
+    """
+    images = [generate_pretty_image() for i in xrange(60)]
+    return render_template('gallery.html', images=images)
+
+
+@app.route('/sidebyside')
+def side_by_side_gallery():
+    pretty = DBImage.select().order_by(DBImage.score.desc()).limit(100)
+    ugly = DBImage.select().order_by(DBImage.score.asc()).limit(100)
+    smart_pretty = 
+
 
 
 @app.route('/manifest.txt')

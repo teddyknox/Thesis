@@ -15,10 +15,7 @@
 \maketitle
 
 \begin{abstract}
-Recent advances in machine learning techniques have resulted in increasingly effective algorithms for discovering creative
-solutions to quantifiable optimization problems. In general, problems unaffected by advances in machine learning are not
-those involving creativity, but those whose optimization functions are difficult to quantify. To teach a computer to
-produce aesthetically pleasing artwork, one must first have in hand a model for aesthetic evaluation to guide the artwork generation. We performed several experiments with Convolutional Neural Networks to produce a hybrid Computational Aesthetic Evaluation model, and generate abstract art appealing to the user's tastes.
+Recent advances in machine learning techniques have resulted in increasingly effective algorithms for discovering creative solutions to quantifiable optimization problems. In general, problems unaffected by advances in machine learning are not those involving creativity, but those whose optimization functions are difficult to quantify. To teach a computer to produce aesthetically pleasing artwork, one must first have in hand a model for aesthetic evaluation to guide the artwork generation. We performed several experiments with Convolutional Neural Networks to produce a hybrid Computational Aesthetic Evaluation model, and generate abstract art appealing to the user's tastes.
 \end{abstract}
 
 \begin{acknowledgements}
@@ -34,7 +31,21 @@ I dedicate this paper to science.
 \chapter{Introduction}
 \label{sec:intro}
 
-Generative art is produced according a set of well-defined procedures, and establishes a cooperative relationship between these procedures and the artist. The procedures defining a piece of generative art need not be carried out by a computer. Early examples of generative art can be found in ancient pottery and religious decorations, often involving the tesselation of geometric shapes and colors. These early examples are impressive for their cerebral nature and the unusual human precision, but their scale and complexity were severely limited by the available human resources for  calculation and manufacture. With the invention of modern computers, the limiting factor on the increasing prevalance and complexity of generative art has become the artist, specifically their expertise in creative decision making and aesthetic evaluation. Despite their enormous computational power, the primary use of modern computers in generative art falls into the category of rendering procedures into their realized form, rather than participating in the search for aesthetic beauty. Advances in machine learning for pattern recognition have proved useful in many different types of well-defined tasks. In this study we apply modern image classification techniques using convolutional neural networks to the problem of computational aesthetic evaluation, observing whether they are capable of learning the tastes evident in a dataset of randomly generated triangle art, labeled with aesthetic quality ratings.
+The accuracy of state of the art machine learning techniques have exceeded the accuracy of humans in certain limited tasks, and has . Using a state-of-the-art convolutional neural network \"out of the box\", we tested whether the modeling the statistically-defined visual aesthetic tastes of an individual. Our first trained model achieved 74\% accuracy in distinguishing aesthetically pleasing and displeasing abstract generative art, suggesting that deep learning techniques may be well-suited to the task of modeling the statistical distribution of arbitrary user tastes. In other words, the supervised techniques capable of recognizing a dog in an image may also be effective at recognizing a well-composed photograph. This presupposes Several difficult modeling tasks could soon be easier thanks to these advances. The task of computational aesthetic evaluation (CAE) is to judge the aesthetic value of a piece of artwork according to subjective criteria. The most groundbreaking advances on this task will likely stem from insights into the neural heuristics underpinning near-universal human preference for qualities such as consonance and composition, leading to new unsupervised learning techniques. Although these techniques will lay a foundation for more naturaly.
+
+  Two ways to go:
+  - Computational Aesthetic Evaluation
+  - Recommendation systems
+
+
+% Convolutional neural networks and the nature of training sets and computational aesthetic evaluation
+
+
+
+% Old
+
+
+Generative art is art produced using a well-defined procedures. The procedures need not be carried out by a computer. Early examples of generative art can be found in ancient pottery and religious decorations, often involving the tesselation of geometric shapes and colors. These early examples are impressive for their cerebral nature and the unusual human precision, but their scale and complexity were severely limited by the available human resources for  calculation and manufacture. With the invention of modern computers, the limiting factor on the increasing prevalance and complexity of generative art has become the artist, specifically their expertise in creative decision making and aesthetic evaluation. Despite their enormous computational power, the primary use of modern computers in generative art falls into the category of rendering procedures into their realized form, rather than participating in the search for aesthetic beauty. Advances in machine learning for pattern recognition have proved useful in many different types of well-defined tasks. In this study we apply modern image classification techniques using convolutional neural networks to the problem of computational aesthetic evaluation, observing whether they are capable of learning the tastes evident in a dataset of randomly generated triangle art, labeled with aesthetic quality ratings.
 
 % - Not as much work in computer imagined art -- art which presents a few layers of abstraction so that each result is
 % unique and valuable on its own
