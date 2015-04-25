@@ -1,6 +1,7 @@
 from flask import render_template, send_file, request, abort, send_from_directory, Response
 from models import Image
 from peewee import fn
+import os
 
 IMAGES_DIR = os.path.abspath('data/images')
 
