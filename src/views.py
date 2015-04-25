@@ -1,9 +1,10 @@
 from flask import render_template, send_file, request, abort, send_from_directory, Response
-from models import Image
 from peewee import fn
 import os
 from server import app
-import generators
+
+from generators import *
+from models import *
 
 IMAGES_DIR = os.path.abspath('data/images')
 MAX_IMAGES = 2000
