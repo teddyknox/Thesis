@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import sys, os
-sys.path.append(os.path.dirname(__name__))
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+print APP_DIRNAME
+sys.path.append(APP_DIRNAME)
 
 from playhouse.migrate import *
 from peewee import *
 from models import Image
-
-APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 db = SqliteDatabase(os.path.join(APP_DIRNAME, '/data/images.db'))
 
