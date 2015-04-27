@@ -67,6 +67,7 @@ def smart_pretty_gallery():
     images = Image.select().where(Image.generation_method == "scored").limit(300)
     images = list(images)
     images.append([generate_pretty_image()[0] for i in xrange(300 - len(images))])
+    images = map(lambda i: i.filename, worst)
     return render_template('gallery.html', images=images)
 
 
