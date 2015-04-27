@@ -60,7 +60,7 @@ def ugly_gallery():
 
 
 @app.route('/smart_pretty')
-def smart_pretty_gallery(num=10):
+def smart_pretty_gallery(num=300):
     """
     Generates a gallery of images that are classified as pretty.
     """
