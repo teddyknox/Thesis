@@ -6,9 +6,6 @@ from app import app
 from generators import *
 from models import *
 
-MAX_IMAGES = 2000
-MAX_RATINGS = 3
-
 
 @app.route('/')
 def rating():

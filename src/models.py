@@ -1,6 +1,9 @@
 from peewee import *
 from generators import *
 
+MAX_IMAGES = 2000
+MAX_RATINGS = 3
+
 db = SqliteDatabase('data/images.db')
 
 
