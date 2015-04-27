@@ -51,12 +51,12 @@ def pretty_image_generator():
         while len(pretty_images) == 0:
             images = [generate_image() for i in xrange(BATCH_SIZE)]
             caffeImages = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename)) for filename in images]
-            results = classifier.predict(caffeImages, oversample=False)
+            results = classifier.predict(caffeImages, oversample=True)
             for x in range(results.shape[0]):
                 scores = results[x]
                 prediction = (-scores).argsort()[0]
                 if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
-                    pretty_images.append(images[x])
+                    pretty_images.append((images[x], scores[1]))
                 else:
                     # throw away image
                     os.remove(os.path.join(IMAGES_DIR, images[x]))
