@@ -60,13 +60,13 @@ def ugly_gallery():
 
 
 @app.route('/smart_pretty')
-def smart_pretty_gallery():
+def smart_pretty_gallery(num=10):
     """
     Generates a gallery of images that are classified as pretty.
     """
-    images = Image.select().where(Image.generation_method == "scored").limit(300)
+    images = Image.select().where(Image.generation_method == "scored").limit(num)
     images = list(images)
-    left = 300 - len(images)
+    left = num - len(images)
     for i in xrange(left):
         filename, score = generate_pretty_image()
         image = Image.create(filename=filename, model_score=score, generation_method="scored")
