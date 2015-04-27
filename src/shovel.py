@@ -8,7 +8,6 @@ from peewee import *
 db = SqliteDatabase('data/images.db')
 
 
-@task
 def migration_1():
 
     migrator = SqliteMigrator(db)
@@ -23,7 +22,6 @@ def migration_1():
         )
 
 
-@task
 def export_to_manifest():
     from random import random
     from models import Image
@@ -38,7 +36,6 @@ def export_to_manifest():
                 val.write(line)
 
 
-# @task
 # def import_from_manifest():
 #     from models import Image
 #     with open('data/manifest.txt', 'r') as manifest:
@@ -47,7 +44,6 @@ def export_to_manifest():
 #             image = Image.create(filename=filename, score=rating, num_ratings=1)
 
 
-# @task
 # def prune():
 #     from models import Image
 #     APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
@@ -57,7 +53,6 @@ def export_to_manifest():
 #             image.delete()
 
 
-@task
 def setup_tables():
     from models import Image
     db.connect()
