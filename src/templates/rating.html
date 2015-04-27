@@ -19,9 +19,17 @@
           <a href="/ugly">/ugly</a>
         </li>
         <li>
-          <a href="/manifest.txt">/manifest.txt</a>
+          <a href="/smart_pretty">/smart_pretty</a>
+        </li>
+        <li>
+          <a href="/manifest.txt">/compa</a>
         </li>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block js %}
+  <script src="{{ static('js/hammer.min.js') }}"></script>
+  <script src="{{ static('js/rating.js') }}"></script>
 {% endblock %}

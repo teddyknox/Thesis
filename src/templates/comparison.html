@@ -1,16 +1,39 @@
 {% extends 'base.html' %}
 
+{% block title %}Comparison{% endblock %}
+
 {% block body %}
-<div class="comparison">
-  {% for name, images in image_sets %}
-  <div class="column">
-    <h2 class="column-label">{{name}}</h2>
-    {% for image in images %}
-      <img src="/image/{{image.filename}}"/>
-    {% endfor %}
+<div class="container-fluid">
+  <div class="header">
+    <h1>Side-by-side Comparison</h1>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" name="render_type" value="normal" id="option1" autocomplete="off" checked> Render Normally
+      </label>
+      <label class="btn btn-default">
+        <input type="radio" name="render_type" value="sortpixels" id="option2" autocomplete="off"> Sort Pixels
+      </label>
+      <!-- <label class="btn btn-default">
+        <input type="radio" name="render_type" value="sortpalette" id="option3" autocomplete="off"> Sort Palette
+      </label> -->
+    </div>
   </div>
-  <div class="clear"></div>
-  {% endfor %}
+  <div class="comparison">
+    {% for name, images in image_sets %}
+    <div class="column">
+      <h2 class="column-label">{{name}}</h2>
+      {% for image in images %}
+        <img class="{{name}}" src="/image/{{image.filename}}"/>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="clear"></div>
+  </div>
 </div>
-<script type="text/javascript" href="{{ static('js/comparison.js') }}"></script>
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="{{ static('js/caman.full.min.js') }}"></script>
+  <script type="text/javascript" src="{{ static('js/pixelsort.js') }}"></script>
+  <script type="text/javascript" src="{{ static('js/comparison.js') }}"></script>
 {% endblock %}
