@@ -47,3 +47,8 @@ button#ugly {
   top: 10px;
   left: 10px;
 }
+
+.comparision img {
+  margin: 0;
+  padding: 0;
+}

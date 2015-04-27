@@ -4,12 +4,13 @@
 <div class="comparison">
   {% for name, images in image_sets %}
   <div class="column">
-    <h2 class="column-label">name</h2>
+    <h2 class="column-label">{{name}}</h2>
     {% for image in images %}
-      <img src="/image/{{ image }}"/>
+      <img src="/image/{{image.filename}}"/>
     {% endfor %}
   </div>
   <div class="clear"></div>
   {% endfor %}
 </div>
+<script type="text/javascript" href="{{ static('js/comparison.js') }}"></script>
 {% endblock %}
