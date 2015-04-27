@@ -69,7 +69,7 @@ def smart_pretty_gallery():
     left = 300 - len(images)
     for i in xrange(left):
         filename, score = generate_pretty_image()
-        image = Image.create(filename=filename, model_score=score, generation_method="score")
+        image = Image.create(filename=filename, model_score=score, generation_method="scored")
         images.append(image)
     images = map(lambda i: i.filename, images)
     return render_template('gallery.html', images=images)
