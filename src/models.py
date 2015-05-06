@@ -11,7 +11,8 @@ class Image(Model):
     filename = CharField(unique=True)
     score = FloatField(default=0.0)
     num_ratings = IntegerField(default=0)
-    model_score = FloatField(null=True)
+    model_score = FloatField(null=True) # log prob that image is pretty
+    model_prediction = BooleanField(null=True) # whether P(pretty) > P(ugly)
     generation_method = CharField(default="random")
 
     class Meta:
@@ -30,5 +31,5 @@ class Image(Model):
     @classmethod
     def get_scored(self):
         filename, score = generate_pretty_image()
-        img = Image.create(filename=filename, model_score=score, generation_method='scored')
+        img = Image.create(filename=filename, model_score=score, generation_method='scored', model_prediction=True)
         return img
