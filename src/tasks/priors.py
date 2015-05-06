@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 import sys, os
-APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-print APP_DIRNAME
-sys.path.append(APP_DIRNAME)
+sys.path.append(os.path.dirname(os.path.dirname(__name__)))
 
 # from playhouse.migrate import *
 from peewee import *

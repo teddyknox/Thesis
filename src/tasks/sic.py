@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # sic: Sort Image Colors
-
 import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(__name__)))
+
 from PIL import Image
 
 def main():
