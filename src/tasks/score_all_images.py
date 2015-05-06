@@ -41,5 +41,5 @@ for image in Image.select().where(Image.num_ratings > 0):
     elif image.model_prediction and image.score == 0:
         false_positive += 1
     else:
-        false_negtive += 1
+        false_negative += 1
 print correct, false_positive, false_negative
