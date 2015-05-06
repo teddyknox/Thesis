@@ -30,7 +30,7 @@ correct = 0
 false_positive = 0
 false_negative = 0
 for image in Image.select():
-    if image.model_prediction and image.score > 0 or
+    if image.model_prediction and image.score > 0 or \
         not image.model_prediction and images.score == 0:
         correct += 1
     elif image.model_prediction and image.score == 0:
