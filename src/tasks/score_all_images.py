@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 import sys, os
-sys.path.append(os.path.dirname(__name__))
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+print APP_DIRNAME
+sys.path.append(APP_DIRNAME)
 
 from models import Image
-from classifier import classifier
+from classifier import classifier, caffe
 from app import IMAGES_DIR
+from peewee import *
 
 db = SqliteDatabase(os.path.join(APP_DIRNAME, '/data/images.db'))
 
@@ -16,8 +19,8 @@ for image in Image.select():
         to_score.append(image)
 for i in range(0, len(to_score), BATCH_SIZE):
     batch = to_score[i:i+BATCH_SIZE]
-    images = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename))
-                for filename in batch]
+    images = [caffe.io.load_image(os.path.join(IMAGES_DIR, image.filename))
+                for image in batch]
     results = classifier.predict(images)
     for x in range(results.shape[0]):
         scores = results[x]
