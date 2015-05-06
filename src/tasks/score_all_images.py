@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import sys, os
-APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-sys.path.append(APP_DIRNAME)
+sys.path.append(os.path.dirname(__name__))
 
 from models import Image
 from classifier import classifier
