@@ -45,6 +45,13 @@ def image_label(image_filename):
     return "", 200, {}
 
 
+@app.route('/random')
+def random_gallery():
+    random = Image.select().where(Image.generation_method == "random").order_by(fn.Random()).limit(300)
+    random = [r.filename for r in random]
+    return render_template('gallery.html', images=random)
+
+
 @app.route('/pretty')
 def pretty_gallery():
     best = Image.select(Image.filename).order_by(Image.score.desc()).limit(300)
@@ -66,11 +73,11 @@ def smart_pretty_gallery(num=300):
     """
     images = Image.select().where(Image.generation_method == "scored").limit(num)
     images = list(images)
-    left = num - len(images)
-    for i in xrange(left):
-        filename, score = generate_pretty_image()
-        image = Image.create(filename=filename, model_score=score, generation_method="scored")
-        images.append(image)
+    # left = num - len(images)
+    # for i in xrange(left):
+    #     filename, score = generate_pretty_image()
+    #     image = Image.create(filename=filename, model_score=score, generation_method="scored")
+    #     images.append(image)
     images = map(lambda i: i.filename, images)
     return render_template('gallery.html', images=images)
 

@@ -1,21 +1,80 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{birkhoff1933aesthetic}
+G.D. Birkhoff.
+\newblock {\em Aesthetic Measure}.
+\newblock Harvard University Press, 1933.
+
+\bibitem{bohnacker-1}
+Hartmut Bohnacker.
+\newblock {\em Generative design : visualize, program, and create with
+  processing}.
+\newblock Princeton Architectural Press, New York, 2012.
+
+\bibitem{cipolla2013machine}
+Roberto Cipolla.
+\newblock {\em Machine learning for computer vision}.
+\newblock Springer, Berlin New York, 2013.
+
+\bibitem{flake}
+Gary~William Flake.
+\newblock {\em The Computational Beauty of Nature}.
+\newblock The MIT Press, 1998.
 
 \bibitem{galanter-3}
 Galanter.
 \newblock Computational aesthetic evaluation: Steps towards machine creativity.
+
+\bibitem{galanter-2}
+Philip Galanter.
+\newblock What is generative art? complexity theory as a context for art
+  theory.
+\newblock In {\em In GA2003--6th Generative Art Conference}. Citeseer, 2003.
+
+\bibitem{galanter-4}
+Philip Galanter.
+\newblock Complexity, neuroaesthetics, and computational aesthetic evaluation.
+\newblock {\em 13th International Conference on Generative Art (GA2010)}, 2010.
 
 \bibitem{galanter-1}
 Philip Galanter.
 \newblock The problem with evolutionary art is ...
 \newblock 2010.
 
-\bibitem{galanter-2}
-Philip Galanter.
-\newblock Xepa: Intelligent sculptures as experimental platforms for
-  computational aesthetic evaluation.
-\newblock 2013.
+\bibitem{gell2004effective}
+Murray Gell-Mann and Seth Lloyd.
+\newblock Effective complexity.
+\newblock {\em Nonextensive entropy}, pages 387--398, 2004.
 
-\bibitem{takagi}
+\bibitem{koshelev-1}
+Misha Kosheleva, Vladik Kreinovich, and Yeung Yam.
+\newblock Towards the use of aesthetics in decision making: Kolmogorov
+  complexity formalizes birkhoff's idea.
+\newblock 1998.
+
+\bibitem{machado2008experiments}
+Penousal Machado, Juan Romero, and Bill Manaris.
+\newblock Experiments in computational aesthetics.
+\newblock In {\em The Art of Artificial Evolution}, pages 381--415. Springer,
+  2008.
+
+\bibitem{mccormack2012computers}
+Jon McCormack.
+\newblock {\em Computers and creativity}.
+\newblock Springer, Berlin New York, 2012.
+
+\bibitem{rigau-1}
+Jaume Rigau, Miquel Feixas, and Mateu Sbert.
+\newblock Conceptualizing birkhoff's aesthetic measure using shannon entropy
+  and kolmogorov complexity.
+\newblock In {\em Computational Aesthetics}, pages 105--112, 2007.
+
+\bibitem{shiffman-1}
+Daniel Shiffman.
+\newblock {\em The nature of code}.
+\newblock D. Shiffman, United States, 2012.
+
+\bibitem{Takagi}
 Hideyuki Takagi.
 \newblock Interactive evolutionary computation: Fusion of the capabilities of
   ec optimization and human evaluation.
