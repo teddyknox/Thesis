@@ -14,7 +14,11 @@ BATCH_SIZE = 32
 to_score = []
 for image in Image.select():
     if image.model_score == None or image.model_prediction == None:
-        to_score.append(image)
+        exists = os.path.isfile(APP_DIRNAME + '/data/images/' + image.filename)
+        if exists:
+            to_score.append(image)
+        else:
+            image.delete()
 for i in range(0, len(to_score), BATCH_SIZE):
     batch = to_score[i:i+BATCH_SIZE]
     images = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename))
