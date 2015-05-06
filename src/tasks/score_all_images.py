@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys, os
-APP_DIRNAME = os.path.dirname(os.path.dirname(__name__))
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(__name__)))
 sys.path.append(APP_DIRNAME)
 
 from models import Image
