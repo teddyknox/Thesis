@@ -1,6 +1,6 @@
 net: "train_val.prototxt"
-test_iter: 1000
-test_interval: 4000
+test_iter: 16
+test_interval: 100
 test_initialization: false
 display: 40
 average_loss: 40
@@ -11,6 +11,6 @@ gamma: 0.96
 max_iter: 10000000
 momentum: 0.9
 weight_decay: 0.0002
-snapshot: 2000
-snapshot_prefix: "./bvlc_googlenet_cae"
-solver_mode: GPU 
+snapshot: 1000
+snapshot_prefix: "./snapshots/googlenet_2"
+solver_mode: GPU
