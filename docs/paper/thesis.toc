@@ -1,12 +1,13 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
 \contentsline {chapter}{\numberline {2}Related Work}{4}
-\contentsline {section}{\numberline {2.1}Related Work in Image Classification}{7}
-\contentsline {chapter}{\numberline {3}Theory}{8}
-\contentsline {section}{\numberline {3.1}Generative Art}{8}
-\contentsline {section}{\numberline {3.2}Compuational Aesthetic Evaluation - Convolutional Neural Network}{8}
-\contentsline {chapter}{\numberline {4}Implementation}{10}
-\contentsline {section}{\numberline {4.1}Generative Art}{10}
-\contentsline {section}{\numberline {4.2}Compuational Aesthetic Evaluation - Convolutional Neural Network}{10}
-\contentsline {chapter}{\numberline {5}Results}{11}
-\contentsline {chapter}{\numberline {6}Conclusion}{12}
-\contentsline {chapter}{Bibliography}{13}
+\contentsline {section}{\numberline {2.1}Related Work in Computational Aesthetics}{5}
+\contentsline {section}{\numberline {2.2}Related Work in Image Classification}{9}
+\contentsline {chapter}{\numberline {3}Theory}{11}
+\contentsline {section}{\numberline {3.1}Compuational Aesthetic Evaluation - Convolutional Neural Network}{11}
+\contentsline {chapter}{\numberline {4}Implementation}{12}
+\contentsline {section}{\numberline {4.1}Training Interface}{13}
+\contentsline {section}{\numberline {4.2}Classifier}{14}
+\contentsline {chapter}{\numberline {5}Results}{16}
+\contentsline {chapter}{\numberline {6}Future Work}{17}
+\contentsline {chapter}{\numberline {7}Conclusion}{18}
+\contentsline {chapter}{Bibliography}{19}

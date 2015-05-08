@@ -51,3 +51,7 @@ with open(APP_DIRNAME + '/data/train.txt', 'r') as f:
             false_negative += 1
 print true_positive, true_negative, false_positive, false_negative
 print float(true_positive + true_negative)/(true_positive + true_negative + false_positive + false_negative)
+
+
+# on test set, outputs correct: 409 false_positive: 40 false_negative: 128
+# accuracy of about 60%, so not great

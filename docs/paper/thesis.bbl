@@ -41,10 +41,28 @@ Philip Galanter.
 \newblock The problem with evolutionary art is ...
 \newblock 2010.
 
+\bibitem{galanter2012computational}
+Philip Galanter.
+\newblock Computational aesthetic evaluation: Past and future.
+\newblock In {\em Computers and Creativity}, pages 255--293. Springer, 2012.
+
 \bibitem{gell2004effective}
 Murray Gell-Mann and Seth Lloyd.
 \newblock Effective complexity.
 \newblock {\em Nonextensive entropy}, pages 387--398, 2004.
+
+\bibitem{hoenig2005defining}
+Florian Hoenig.
+\newblock Defining computational aesthetics.
+\newblock In {\em Proceedings of the First Eurographics Conference on
+  Computational Aesthetics in Graphics, Visualization and Imaging}, pages
+  13--18. Eurographics Association, 2005.
+
+\bibitem{jia2014caffe}
+Yangqing Jia, Evan Shelhamer, Jeff Donahue, Sergey Karayev, Jonathan Long, Ross
+  Girshick, Sergio Guadarrama, and Trevor Darrell.
+\newblock Caffe: Convolutional architecture for fast feature embedding.
+\newblock {\em arXiv preprint arXiv:1408.5093}, 2014.
 
 \bibitem{koshelev-1}
 Misha Kosheleva, Vladik Kreinovich, and Yeung Yam.
@@ -73,6 +91,12 @@ Jaume Rigau, Miquel Feixas, and Mateu Sbert.
 Daniel Shiffman.
 \newblock {\em The nature of code}.
 \newblock D. Shiffman, United States, 2012.
+
+\bibitem{szegedy2014going}
+Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir
+  Anguelov, Dumitru Erhan, Vincent Vanhoucke, and Andrew Rabinovich.
+\newblock Going deeper with convolutions.
+\newblock {\em arXiv preprint arXiv:1409.4842}, 2014.
 
 \bibitem{Takagi}
 Hideyuki Takagi.
