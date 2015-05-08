@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-/home/teddy/caffe/build/tools/caffe train --solver=./model/solver.prototxt --gpu=0
+/home/teddy/caffe/build/tools/caffe train --solver=./solver.prototxt --gpu=0
