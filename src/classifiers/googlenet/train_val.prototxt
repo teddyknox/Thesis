@@ -36,8 +36,8 @@ layer {
     mean_value: 123
   }
   data_param {
-    source: "../../data/train_lmdb"
-    batch_size: 32 
+    source: "../../data/val_lmdb"
+    batch_size: 32
     backend: LMDB
   }
 }
@@ -937,7 +937,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 1000
+    num_output: 2
     weight_filler {
       type: "xavier"
       std: 0.0009765625
@@ -964,19 +964,6 @@ layer {
   top: "loss1/top-1"
   include {
     phase: TEST
-  }
-}
-layer {
-  name: "loss1/top-5"
-  type: "Accuracy"
-  bottom: "loss1/classifier"
-  bottom: "label"
-  top: "loss1/top-5"
-  include {
-    phase: TEST
-  }
-  accuracy_param {
-    top_k: 5
   }
 }
 layer {
@@ -1721,7 +1708,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 1000
+    num_output: 2
     weight_filler {
       type: "xavier"
       std: 0.0009765625
@@ -1748,19 +1735,6 @@ layer {
   top: "loss2/top-1"
   include {
     phase: TEST
-  }
-}
-layer {
-  name: "loss2/top-5"
-  type: "Accuracy"
-  bottom: "loss2/classifier"
-  bottom: "label"
-  top: "loss2/top-5"
-  include {
-    phase: TEST
-  }
-  accuracy_param {
-    top_k: 5
   }
 }
 layer {
@@ -2453,7 +2427,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 1000
+    num_output: 2
     weight_filler {
       type: "xavier"
     }
@@ -2479,18 +2453,5 @@ layer {
   top: "loss3/top-1"
   include {
     phase: TEST
-  }
-}
-layer {
-  name: "loss3/top-5"
-  type: "Accuracy"
-  bottom: "loss3/classifier"
-  bottom: "label"
-  top: "loss3/top-5"
-  include {
-    phase: TEST
-  }
-  accuracy_param {
-    top_k: 5
   }
 }

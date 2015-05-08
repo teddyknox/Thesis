@@ -1,6 +1,6 @@
 net: "train_val.prototxt"
-test_iter: 500
-test_interval: 1000
+test_iter: 16
+test_interval: 100
 test_initialization: false
 display: 40
 average_loss: 40
@@ -12,5 +12,5 @@ max_iter: 10000000
 momentum: 0.9
 weight_decay: 0.0002
 snapshot: 1000
-snapshot_prefix: "./snapshots/googlenet"
-solver_mode: GPU 
+snapshot_prefix: "./snapshots/googlenet_2"
+solver_mode: GPU
