@@ -48,3 +48,7 @@ with open(APP_DIRNAME + '/data/val.txt', 'r') as f:
         else:
             false_negative += 1
 print correct, false_positive, false_negative
+
+
+# on test set, outputs correct: 409 false_positive: 40 false_negative: 128
+# accuracy of about 60%, so not great

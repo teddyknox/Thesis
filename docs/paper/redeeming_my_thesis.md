@@ -1,37 +1,12 @@
-\documentclass[midd]{thesis}
+# Computational Aesthetic Evaluation using Convolutional Neural Networks: Hard Lessons Learned with Machine Learning
 
-\usepackage{graphicx}
-\usepackage{times}
-\usepackage{amsmath}
-
-\bibliographystyle{plain}
+### Abstract
 
 
-\title {Computational Aesthetic Evaluation using Convolutional Neural Networks}
-
-\author {Teddy Knox}
-\adviser {Professor Christopher Andrews}
-
-\begin{document}
-
-\maketitle
-
-\begin{abstract}
-The accuracies of state-of-the-art machine learning techniques have exceeded the accuracy of humans at certain limited tasks, suggesting the computers will soon be able to complete many sophisticated tasks competently. This study tested the accuracy of state-of-the-art convolutional neural networks for modeling the statistically-defined visual aesthetic tastes of randomly generated triangle art. Our trained model demonstrated no predictive power at this task. Further research will be needed to interpret this result.
-\end{abstract}
-
-\begin{acknowledgements}
+### Acknowledgements
 I dedicate this paper to science.
-\end{acknowledgements}
 
-\contentspage
-\tablelistpage
-\figurelistpage
-
-\normalspacing \setcounter{page}{1} \pagenumbering{arabic}
-
-\chapter{Introduction}
-\label{sec:intro}
+## Introduction
 
 Machine learning is a broad discipline of computer science that has seen rapid advances in recent years, and has the potential to impact all human enterprises. The latest algorithms are capable of competitive or even better-than-human performance [citation needed] on certain tasks, and their applications are increasing in proportion to the availability of training data. One such application will be in the more  field of generative art and design. Generative art is art that is created procedurally, often with the help of a computer. Until recently, the use of computers in art and design has been limited to rote tasks such as preparing renderings and generating randomness, but advances in machine learning may soon lend computers to more high-level aspects the creative process, such as creative exploration and Computational Aesthetic Evaluation. Computation Aesthetic Evaluation (CAE) is the problem in generative art research of programming a computer to subjectively differentiate between aesthetically pleasing and displeasing content. This problem is important to the field of generative art for its potential to automate searches for aesthetic solutions, and would also be useful for building personalized recommendation systems. This research investigates the applicability of state-of-the-art general-purpose pattern recognition algorithms for Computational Aesthetic Evaluation. This experimentation is motivated by an interest in discovering the limits of these impressive models. By evaluating their accuracy on unconventional datasets of unknown complexity, we hope to gain a better understanding of both the model's capabilities and the hidden structure of the dataset. This paper first provides background and formulates the problem, then explains the experimentation in detail, and concludes with a discussion of results and future uses of machine learning models for the analysis of artistic content.
 
@@ -46,13 +21,13 @@ Convolutional Neural Networks (CNNs) are a type of model inspired by the biology
 
 Accurate Computational Aesthetic Evaluation algorithms would be useful in the fields of generative art and recommendation systems. With the invention of modern computers, the limiting factor on the increasing prevalance and complexity of generative art has become the artist, specifically their expertise in creative decision making and aesthetic evaluation. Despite their enormous computational power, the primary use of modern computers in generative art falls into the category of rendering procedures into their realized form, rather than participating in the search for aesthetic beauty. Advances in machine learning for pattern recognition have proved useful in many different types of well-defined tasks. In this study we apply modern image classification techniques using convolutional neural networks to the problem of computational aesthetic evaluation, observing whether they are capable of learning the tastes evident in a dataset of randomly generated triangle art, labeled with aesthetic quality ratings.
 
-\chapter{Related Work}
+## Related work
 
 The fields of Computational Aesthetics and Machine Learning are both growing rapidly within the field of computer science. There is a massive of body of literature within both fields, and gaining a firm footing of the basic principles in both of these fields would be an ambitious task. Given the worldwide academic computer science interest, I have learned that with in the natural world of time constraints, a trade-off must always be made between one's awareness of the peripherals of their field and one's productivity in research. I would speculate that remaining an expert in a sufficiently narrow field is easier than becoming an expert in that field, and so it would seem that the standard mode of a scientist would be to be both extremely informed in a small field while still making significant contributions to their field. This observation on the nature of scientific study suggests that as a the popularity of a field of study increases, each researcher will find it advantageous to become more specialized in order to maintain a high level of expertise of their field's immediate surroundings.
 
 The research I did for my thesis was unusual in that I developed an idea for an experiment with Professor Andrews before developing a strong understanding of the field of computational aesthetics at large. For this reason, positioning my work in the field post-facto became was daunting task, because I wanted to simultaneously gain a good high-level understanding of the field and as well as focus down on a specific part. I spent a lot of time filtering through tangentially related papers on Google Scholar before deciding it would be a better use of my time to begin experimenting. To give you a sense of the scale of the search, there are about 17,200 results for the search query ``computational aesthetic evaluation using neural networks''. After an hour of filtering, I had curated a list of 60 possibly relevant papers of variable length to continue to process. Within my time constraints I was unable to find a study that was deeply related to my research. This may have been because of the novelty or the naivet\'{e} my hypothesis of study, or both. Despite this, I was able to gain a distinct appreciation for the non-trivial degree of time-management and strategy involved with developing expertise in a new field of study.
 
-\section{Related Work in Computational Aesthetics}
+### Related Work in Computational Aesthetics
 
 The field of computational aesthetics is remarkably young. In doing high-level survey research in this field I felt a distinct tension between the ease in which we are able to program computers to produce impressive generative art and the difficulty we face in offloading more of the creative burden to the computers. The field of computational aesthetics has no shortage of high-level problem formulations, but currently lacks any theoretical advances to justify its ambitions. I was unable to unearth a landmark ``exciting'' study to form the foundation of this field, that paper has yet to come. Within the field of Computational Aesthetics, the most-cited papers  have titles like ``Computational aesthetic evaluation: Past and future'', ``Defining computational aesthetics'', and ``Experiments in computational aesthetics''. These papers are either concerned with developing a modern connectionist model of aesthetics or with conducting aesthetic classification experiments to validate that accordance with art school guidelines really does correlate with subjective aesthetic ratings \cite{galanter2012computational, hoenig2005defining, machado2008experiments}.
 
@@ -85,25 +60,13 @@ Many have also put genetic algorithms to the task of coming up with novel soluti
 
 % Include section on Melbourne study using Self Organizing Maps?
 
-\section{Related Work in Image Classification}
+### Related Work in Machine Learning
 
 Machine learning presents some of the most promising opportunities for advances in computational aesthetics. The accuracy of state-of-the-art pattern recognizers have been increasing steadily from year to year since the mid-2000s. Researchers think that these encouraging advances in data science have been the result of a combination of the increasing availability of huge datasets, the decreasing cost of computation, and the influx of new ideas and interest.
 
 Of particular interest to me was a powerful image recognition architecture that Google developed to win the 2014 Imagenet Large Scale Visual Recognition Challenge (ILSVRC)  \cite{szegedy2014going}. ILSVRC 2014 challenged participants to correctly classify a set of test images derived from 1000 different Imagenet categories. Some of the categories look extremely similar, and demanding a near human level of recognition ability to differentiate. For example, the Siberian huskey and the Eskimo dog look very similar, and both were included as categories for the Imagenet challenge. With an appreciation of the ability of GoogLeNet to recognize patterns, I wondered if this same architecture could demonstrate a similar level of ability at aesthetic evaluation tasks.
 
-\chapter{Theory}
-
-% Deeper discussion on color theory generalizations.
-
-% \section{Generative Art}
-
-Theory introduction
-
-\section{Compuational Aesthetic Evaluation - Convolutional Neural Network}
-
-We will use various CNN models that come with Caffe \"out of the box\" to test their efficacy, rather than attempt to customize a model to this task. The first model we will test is called GoogLeNet, which won the ImageNet Large Scale Visual Recognition Challenge in 2014.
-
-\chapter{Implementation}
+### Experimental Design
 
 There were three motivations the informed the design of this experiment.
 
@@ -115,9 +78,11 @@ The third motivation was an interest in the relationship between the accuracy of
 
 With these factors in mind, I designed the experiment. The body of artwork for rating would be randomly generated triangle art. I would build a training interface for rating these images, where I would assign each presented image a completely subjective binary rating of attractiveness. I would click the green button if an image looked good to me, and the red button if it did not. In order to ensure the internal consistency of my ratings, I would make sure to give each image more than one rating during the training proces. I represented a ``thumbs up'' rating with a 1, and a ``thumbs down'' rating with a 0. If an image received conflicting ratings, its recorded label would become 0, to avoid introducing controversial images to our classifier. With a dataset of consistently rated images, we would train GoogLeNet on a big portion of the data, and test GoogLeNet on the rest.
 
-To perform this experiment I would need to assemble a relatively small dataset of images with ratings using a training interface, and I would need an instance of the GoogLeNet classifier.
+### Experimental Proceedure
 
-\section{Training Interface}
+To perform this experiment I would need to assemble a relatively small dataset of images with ratings, and I would need an instance of the GoogLeNet classifier.
+
+### Training Interface
 
 Assembling a dataset would be relatively straightforward. Using python, the Flask web framework, sqlite3, and the Pillow graphics package, I built a website, database, and image generation algorithm, respectively.
 
@@ -130,7 +95,8 @@ Over the course of a few days I made roughly 4000 ratings on  2000 images. In ra
 % sigmoid graph of data quantity by model accuracy
 
 % relevant https://xkcd.com/915/
-\section{Classifier}
+
+### Model
 
 Preparing an instance of the GoogLeNet classifier would turn out to be less straightforward. I decided to use a popular neural network framework called ``Caffe'', developed at the Berkeley Language and Vision Center only two years ago. Caffe comes packaged with some example models, and one of those models was conveinently the GoogLeNet model. This meant that once Caffe was intalled I had no problem booting up an exact replica of very sophisticated model Google built.
 
@@ -138,11 +104,13 @@ Training convolutional neural networks is computationally intensive, and doing s
 
 With Caffe installed on our instance, I retrofitted the GoogLeNet architecture to produce predictions on 2 labels, instead of 1000. Next, I divided my database of labeled images, placing 75% into a training set and a 25% into a test set. Next, I trained the modified GoogLeNet on the training set. The training accuracy began low, then steadily rose, and finally converged after about two hours.
 
-\chapter{Results}
+### Theory
 
-My classifier converged to an F1 score of 0.16 and a test accuracy of about 75\%, which coincides with the fraction of images the test set are ``ugly''. The measure of a classification model is whether its classification accuracy is greater than the prior probablity of the largest category in the test set, since a fake model could achieve an accuracy equivalent to that prior probability by predicting the most prevalent category every time. It seems likely that during training the accuracy of my model grew because it gradually learned that guessing mostly ``ugly'' would produce the best accuracy, both on the training set and the test set.
+% this part of the paper will require a very clear head to write.
 
-These results are disappointing because they tell to us very little information about the dataset, the classifier, or what went wrong. Unfortunately I ran out of time to try and understand exactly what went wrong, which prevents us from arriving at the confident conclusion of a null result. A discussion of hypothetical next steps will come next.
+## Results
+
+The classifier converged at a test accuracy of about 75\%, which is immediately troubling for its alignment with the dataset's priors. 75\% of the images in the test set are ``ugly'', which means that a fake model could achieve a 75\% accuracy by predicting ``ugly'' every time. The F1 score for the classifier on the test dataset is 0.16, which is very low.
 
 % graphic of F1 score calculation
 
@@ -151,77 +119,19 @@ These results are disappointing because they tell to us very little information 
 % false_positive = 40
 % false_negative = 128
 % precision = true_positive / (true_positive + false_positive)  # 0.285714285714
-% recall = true_positive / (true_positive + false_negative)     #  0.111111111111
-% fscore = 2 * (precision * recall) / (precision + recall)      #  0.16
+% recall = true_positive / (true_positive + false_negative)  #  0.111111111111
+# fscore = 2 * (precision * recall) / (precision + recall)  #  0.16
 
-\chapter{Discussion of Results}
-
-The outcome of this experiment was a classifier which demonstrated no predictive power on the dataset provided. Normally this would be a
-
-
-\chapter{Conclusion}
+% accuracy
+% calculate f-score
 
 % this is meta-recognition
 % we're not asking what this is, were asking whether what this is looks good.
+
+# Conclusion
 
 % address each of the motivations
 
 % too many motivations?
 
 % this dataset is different from imagenet in that for imagenet, when asked to classify an image of a bear
-
-Given the difficulty of defining art itself, it is no surprise that the criticism and reception of art itself is as nebulous. Yet despite the unclear underpinnings of aesthetic tastes, it is clear that aesthetic judgements are an integral part of everyday life. Short of machine intelligence, computerized judgements of aesthetics will likely never supercede our own, but in combination with our own, there is the potential for computers to make artists out of us all, or at least reduce the cost of aesthetically pleasing design.
-
-The outcome of this experiment may not be clear and but the field of computational aesthetic evaluation will only gain in relevance as we strive to make our world more beautiful.
-
-% - Is there a unifying aspect behind the beauty of various types of things?
-% - Could we teach a computer to find a beautiful solution to a problem by studying how to generate beautiful artwork?
-% - There have been much academic discussion of questions of where to begin with the problem of Computation Aesthetic Evaluation.
-% - the general consesnus is: baby steps.
-% - A deeply interconnected problem
-%   - why?
-
-Qualitative results here
-
-\nocite{*}
-\bibliography{thesis}
-\end{document}
-
-%% LaTeX Examples
-
-% This thesis has many chapters.  For more on Alice see
-% Chapter~\ref{sec:alice}, and in particular Section~\ref{sec:reproach}.
-%% \section{SECTION 1}
-% The text for Section 1 goes here.
-% \label{sec:alice}
-% \subsection{Subsection heading goes here}
-% Subsection 1 text
-% \subsubsection{Subsubsection 2 heading goes here}
-% Subsubsection 2 text
-% \begin{equation}
-% \label{eqn:sampleEqn}
-% k_1=\frac{\omega }{c({1/\varepsilon_m + 1/\varepsilon_i})^{1/2}}=k_2=\frac{\omega
-% sin(\theta)\varepsilon_{air}^{1/2}}{c}
-% \end{equation}
-%
-% \noindent
-% where $\omega$ is the frequency of the plasmon, $c$ is the speed of
-% light, $\varepsilon_m$ is the dielectric constant of the metal,
-% $\varepsilon_i$ is the dielectric constant of neighboring insulator,
-% and $\varepsilon_{air}$ is the dielectric constant of air.
-% Equation~\ref{eqn:sampleEqn} makes this perfectly clear.
-% See also Figure~\ref{fig:myfig} for an illustration.
-%
-%
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.75\textwidth]{graph.png}
-% \caption{My figure.}
-% \label{fig:myfig}
-% \end{figure}
-%%
-% (As promised in Chapter~\ref{sec:intro}, here it gets interesting.)
-%
-% \appendix
-% \chapter{Chapter 1 of appendix}
-% Appendix chapter 1 text goes here
