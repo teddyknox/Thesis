@@ -1,10 +1,12 @@
 from peewee import *
 from generators import *
+import os, inspect
 
+APP_DIRNAME = os.path.dirname(inspect.getfile(inspect.currentframe())))
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
 
-db = SqliteDatabase('images.db')
+db = SqliteDatabase(os.path.join(APP_DIRNAME, 'images.db'))
 
 
 class Image(Model):
