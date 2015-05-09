@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import sys, os
-sys.path.append(os.path.dirname(os.path.dirname(__name__)))
+import sys, os, inspect
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+sys.path.append(APP_DIRNAME)
 
 # from playhouse.migrate import *
 from peewee import *

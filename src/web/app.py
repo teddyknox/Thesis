@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 from flask import Flask, url_for
-import os
-
-# Shared config variables
-IMAGES_DIR = os.path.abspath('data/images')
 
 app = Flask(__name__)
 

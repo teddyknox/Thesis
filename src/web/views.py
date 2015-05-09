@@ -1,6 +1,9 @@
+import sys, os, inspect
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+sys.path.append(APP_DIRNAME)
+
 from flask import render_template, send_file, request, abort, send_from_directory, Response
 from peewee import fn
-import os
 from app import app
 
 from generators import *

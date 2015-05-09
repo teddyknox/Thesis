@@ -1,23 +1,21 @@
 #!/usr/bin/env python
-import sys, os
-sys.path.append(os.path.dirname(os.path.dirname(__name__)))
+import sys, os, inspect
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+sys.path.append(APP_DIRNAME)
 
 from playhouse.migrate import *
 from peewee import *
+from models import Image
 
-db = SqliteDatabase('../data/images.db')
+db = SqliteDatabase(os.path.join(APP_DIRNAME, '/data/images.db'))
 
-migrator = SqliteMigrator(db)
-
-model_score = FloatField(null=True)
-generation_method = CharField(default="random")
-
-with db.transaction():
-    migrate(
-        migrator.add_column('image', 'model_score', model_score),
-        migrator.add_column('image', 'generation_method', generation_method)
-    )
-
+for image in Image.select():
+    if image.generation_method == "score":
+        image.generation_method = "scored"
+        image.save()
+    exists = os.path.isfile(APP_DIRNAME + '/data/images/' + image.filename)
+    if not exists:
+        image.delete()
 
 # def export_to_manifest():
 #     from random import random
@@ -40,14 +38,6 @@ with db.transaction():
 #             filename, rating = record.split()
 #             image = Image.create(filename=filename, score=rating, num_ratings=1)
 
-
-# def prune():
-#     from models import Image
-#     APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
-#     for image in Image.select():
-#         exists = os.path.isfile(APP_DIRNAME + '/images/' + image.filename)
-#         if not exists:
-#             image.delete()
 
 #
 # def setup_tables():
