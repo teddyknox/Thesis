@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys, os, inspect
 APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+print APP_DIRNAME
 sys.path.append(APP_DIRNAME)
 
 from models import Image
