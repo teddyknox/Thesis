@@ -3,12 +3,10 @@ import sys, os, inspect
 APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
 sys.path.append(APP_DIRNAME)
 
-from models import Image
+from models import Image, db
 from classifier import classifier, caffe
 from app import IMAGES_DIR
 from peewee import *
-
-db = SqliteDatabase(os.path.join(APP_DIRNAME, '/data/images.db'))
 
 # BATCH_SIZE = 32
 #
