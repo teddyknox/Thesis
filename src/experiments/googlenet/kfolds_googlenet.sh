@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Quit on error code
+set -e
+
 CAFFE_DIR=$HOME/caffe/build/tools
 SCRIPTS_DIR=../../scripts
 
