@@ -2,7 +2,7 @@ from peewee import *
 from generators import *
 import os, inspect
 
-APP_DIRNAME = os.path.dirname(inspect.getfile(inspect.currentframe())))
+APP_DIRNAME = os.path.dirname(inspect.getfile(inspect.currentframe()))
 MAX_IMAGES = 2000
 MAX_RATINGS = 3
 
