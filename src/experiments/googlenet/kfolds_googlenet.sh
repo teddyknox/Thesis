@@ -18,7 +18,7 @@ for FOLD in $(seq 1 $NUM_FOLDS); do
   $SCRIPTS_DIR/write_manifests.py $FOLD $NUM_FOLDS .
   $CAFFE_DIR/convert_imageset --shuffle $IMAGES_DIR train.txt train_lmdb
   $CAFFE_DIR/convert_imageset --shuffle $IMAGES_DIR val.txt val_lmdb
-  $CAFFE_DIR/caffe train --solver=solver.prototxt --gpu=0 --log_dir=logs
+  $CAFFE_DIR/caffe train --solver=../../solver.prototxt --gpu=0 --log_dir=logs
   plot_training_log.py 0 test_accuracy_vs_iters.png $(logs/*.log*)
   plot_training_log.py 2 test_loss_vs_iters.png $(logs/*.log*)
   plot_training_log.py 4 train_lr_vs_iters.png $(logs/*.log*)
