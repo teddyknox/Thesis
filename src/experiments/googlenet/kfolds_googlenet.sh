@@ -4,7 +4,7 @@
 set -e
 
 EXPERIMENT_DIR=$(dirname $0)
-pushd EXPERIMENT_DIR
+pushd $EXPERIMENT_DIR
 CAFFE_DIR=$HOME/caffe/build/tools
 SCRIPTS_DIR=$(readlink -f ../../scripts)
 IMAGES_DIR=$(readlink -f ../../images)/
