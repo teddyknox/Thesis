@@ -6,7 +6,7 @@ set -e
 pushd $(dirname $0)
 CAFFE_DIR=$HOME/caffe/build/tools
 SCRIPTS_DIR=$(readlink -f ../../scripts)
-IMAGES_DIR=$(readlink -f ../../images)
+IMAGES_DIR=$(readlink -f ../../images)/
 
 NUM_FOLDS=10
 
