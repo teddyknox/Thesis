@@ -12,7 +12,7 @@ for FOLD in $(seq 1 $NUM_FOLDS); do
   FOLD_DIR=./folds/$FOLD
   mkdir -p $FOLD_DIR
   $SCRIPTS_DIR/write_manifests.py $FOLD $NUM_FOLDS $FOLD_DIR
-  rm -r $FOLD_DIR/train_lmdb $FOLD_DIR/test_lmdb
+  rm -rf $FOLD_DIR/train_lmdb $FOLD_DIR/test_lmdb
   $CAFFE_DIR/convert_imageset --shuffle ../../images/ $FOLD_DIR/train.txt $FOLD_DIR/train_lmdb
   $CAFFE_DIR/convert_imageset --shuffle ../../images/ $FOLD_DIR/val.txt $FOLD_DIR/val_lmdb
   cp solver.prototxt $FOLD_DIR/solver.prototxt
