@@ -32,7 +32,7 @@ if __name__ == "__main__":
             f.write("{}\t{}\n".format(filename, score))
     with open(os.path.join(output_dir, "val.txt"), 'w') as f:
         for filename, score in val:
-            f.write("{}\t{}\n".format(filename, score)))
+            f.write("{}\t{}\n".format(filename, score))
     with open(os.path.join(output_dir, "priors.txt"), 'w') as f:
         neg_priors = float(priors[0])/sum(priors)
         pos_priors = float(priors[1])/sum(priors)
