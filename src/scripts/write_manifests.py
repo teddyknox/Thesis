@@ -27,7 +27,7 @@ if __name__ == "__main__":
             train.append(img)
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
         for img in train:
-            f.write(img.filename)
+            f.write("{}\n".format(img.filename))
     with open(os.path.join(output_dir, "val.txt"), 'w') as f:
         for img in val:
-            f.write(img.filename)
+            f.write("{}\n".format(img.filename))
