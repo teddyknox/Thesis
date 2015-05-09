@@ -3,7 +3,6 @@ from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
 import os
-from classifier import classifier, CaffeImportError
 
 BATCH_SIZE = 30
 CONFIDENCE_THRESHOLD = 0.6
@@ -26,26 +25,27 @@ def generate_image():
     return filename
 
 
-def pretty_image_generator():
-    pretty_images = []
-    while True:
-        while len(pretty_images) == 0:
-            images = [generate_image() for i in xrange(BATCH_SIZE)]
-            caffeImages = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename)) for filename in images]
-            results = classifier.predict(caffeImages, oversample=True)
-            for x in range(results.shape[0]):
-                scores = results[x]
-                prediction = (-scores).argsort()[0]
-                if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
-                    pretty_images.append((images[x], scores[1]))
-                else:
-                    # throw away image
-                    os.remove(os.path.join(IMAGES_DIR, images[x]))
-        yield pretty_images.pop(0)
-
-pig = pretty_image_generator()
-def generate_pretty_image():
-    if caffe:
-        return next(pig)
-    else:
-        raise CaffeImportError()
+# def pretty_image_generator():
+#     from classifier import classifier, CaffeImportError
+#     pretty_images = []
+#     while True:
+#         while len(pretty_images) == 0:
+#             images = [generate_image() for i in xrange(BATCH_SIZE)]
+#             caffeImages = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename)) for filename in images]
+#             results = classifier.predict(caffeImages, oversample=True)
+#             for x in range(results.shape[0]):
+#                 scores = results[x]
+#                 prediction = (-scores).argsort()[0]
+#                 if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+#                     pretty_images.append((images[x], scores[1]))
+#                 else:
+#                     # throw away image
+#                     os.remove(os.path.join(IMAGES_DIR, images[x]))
+#         yield pretty_images.pop(0)
+#
+# pig = pretty_image_generator()
+# def generate_pretty_image():
+#     if caffe:
+#         return next(pig)
+#     else:
+#         raise CaffeImportError()
