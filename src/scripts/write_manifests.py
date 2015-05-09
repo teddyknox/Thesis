@@ -28,6 +28,6 @@ if __name__ == "__main__":
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
         for img in train:
             f.write(img.filename)
-    with open(os.path.join(output_dir, "train.txt"), 'w') as f:
-        for img in test:
+    with open(os.path.join(output_dir, "val.txt"), 'w') as f:
+        for img in val:
             f.write(img.filename)
