@@ -1,7 +1,7 @@
-import os
+import sys, os, inspect
+APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+sys.path.append(APP_DIRNAME)
 
-
-APP_DIRNAME = os.path.abspath(os.path.dirname(__file__))
 MODEL_DEF_FILE = '{}/classifiers/googlenet/deploy.prototxt'.format(APP_DIRNAME)
 PRETRAINED_MODEL_FILE = '{}/classifiers/googlenet/bvlc_googlenet_cae_iter_116000.caffemodel'.format(APP_DIRNAME)
 

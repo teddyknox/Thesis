@@ -3,7 +3,6 @@ from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
 import os
-from app import IMAGES_DIR
 from classifier import classifier, CaffeImportError
 
 BATCH_SIZE = 30
