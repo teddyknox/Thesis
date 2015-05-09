@@ -1,4 +1,4 @@
-net: "train_val.prototxt"
+net: "../../train_val.prototxt"
 test_iter: 16
 test_interval: 100
 test_initialization: false
