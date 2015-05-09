@@ -9,10 +9,12 @@ render_template() {
 CAFFE_DIR=$HOME/caffe/build/tools
 SCRIPTS_DIR=../../scripts
 
-for FOLD in `seq 1 10`; do
+NUM_FOLDS=10
+
+for FOLD in $(seq 1 $NUM_FOLDS); do
   FOLD_DIR=./folds/$FOLD
   mkdir -p $FOLD_DIR
-  write_manifests.py $FOLD $FOLD_DIR
+  $SCRIPTS_DIR/write_manifests.py $FOLD $NUM_FOLDS $FOLD_DIR
   $CAFFE_DIR/convert_imageset --shuffle ../images $FOLD_DIR/train.txt $FOLD_DIR/train_lmdb
   $CAFFE_DIR/convert_imageset --shuffle ../images $FOLD_DIR/val.txt $FOLD_DIR/val_lmdb
   # we may not need templating

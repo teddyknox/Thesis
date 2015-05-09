@@ -17,7 +17,9 @@ if __name__ == "__main__":
     fold_size = float(1)/num_folds
     low = (fold - 1) * fold_size
     high = low + fold_size
-    images = Image.select().where(Image.generation_method == "random" and Image.num_ratings > 0)
+    images = Image.select().where((Image.generation_method == "random" and
+                                    Image.num_ratings > 0 and
+                                    (Image.score == 0 or Image.score == 1)))
     train = []
     val = []
     for img in images:
@@ -27,7 +29,7 @@ if __name__ == "__main__":
             train.append(img)
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
         for img in train:
-            f.write("{}\n".format(img.filename))
+            f.write("{}\t{}\n".format(img.filename, img.score))
     with open(os.path.join(output_dir, "val.txt"), 'w') as f:
         for img in val:
-            f.write("{}\n".format(img.filename))
+            f.write("{}\t{}\n".format(img.filename, img.score))
