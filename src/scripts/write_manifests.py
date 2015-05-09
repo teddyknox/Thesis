@@ -30,7 +30,7 @@ if __name__ == "__main__":
             train.append(img)
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
         for img in train:
-            f.write("/{}\t{}\n".format(img.filename, int(img.score)))
+            f.write("{}\t{}\n".format(img.filename, int(img.score)))
     with open(os.path.join(output_dir, "val.txt"), 'w') as f:
         for img in val:
-            f.write("/{}\t{}\n".format(img.filename, int(img.score)))
+            f.write("{}\t{}\n".format(img.filename, int(img.score)))
