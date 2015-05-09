@@ -21,14 +21,19 @@ if __name__ == "__main__":
     images = Image.select().where(Image.generation_method == "random" and Image.num_ratings > 0)
     train = []
     val = []
+    priors = [0, 0]
     for img in images:
-        if low <= r.random() < high:
-            val.append(img)
-        else:
-            train.append(img)
+        score = int(bool(img.score))
+        priors[score] += 1
+        place = val if low <= r.random() < high else train
+        place.append((img.filename, score))
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
-        for img in train:
-            f.write("{}\t{}\n".format(img.filename, int(bool(img.score))))
+        for filename, score in train:
+            f.write("{}\t{}\n".format(filename, score))
     with open(os.path.join(output_dir, "val.txt"), 'w') as f:
-        for img in val:
-            f.write("{}\t{}\n".format(img.filename, int(bool(img.score))))
+        for filename, score in val:
+            f.write("{}\t{}\n".format(filename, score)))
+    with open(os.path.join(output_dir, "priors.txt"), 'w') as f:
+        neg_priors = float(priors[0])/sum(priors)
+        pos_priors = float(priors[1])/sum(priors)
+        f.write("num neg: {}\nfrac neg:{}\nnum pos: {}\nfrac pos: {}".format(priors[0], neg_priors, priors[1], pos_priors))
