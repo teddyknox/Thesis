@@ -13,7 +13,7 @@ NUM_FOLDS=10
 
 for FOLD in $(seq 1 $NUM_FOLDS); do
   FOLD_DIR=./folds/$FOLD
-  rm -rf train_lmdb val_lmdb $FOLD_DIR/logs $FOLD_DIR/snapshots
+  rm -rf $FOLD_DIR/train_lmdb $FOLD_DIR/val_lmdb $FOLD_DIR/logs $FOLD_DIR/snapshots
   mkdir -p $FOLD_DIR $FOLD_DIR/snapshots $FOLD_DIR/logs
   pushd $FOLD_DIR
   $SCRIPTS_DIR/write_manifests.py $FOLD $NUM_FOLDS .
