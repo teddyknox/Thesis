@@ -52,17 +52,19 @@ def parse_log(path_to_log):
     test_dict_names = ('NumIters', 'Seconds', 'TestAccuracy', 'TestLoss')
 
     logfile_year = extract_seconds.get_log_created_year(path_to_log)
+    print path_to_log
     with open(path_to_log) as f:
         start_time = extract_seconds.get_start_time(f, logfile_year)
-
         for line in f:
+            print "line"
             iteration_match = re_iteration.search(line)
             if iteration_match:
                 iteration = float(iteration_match.group(1))
             if iteration == -1:
                 # Only look for other stuff if we've found the first iteration
+                print "no iteration"
                 continue
-
+            print "found first iteration"
             time = extract_seconds.extract_datetime_from_line(line,
                                                               logfile_year)
             seconds = (time - start_time).total_seconds()
