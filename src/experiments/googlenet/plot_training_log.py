@@ -11,7 +11,8 @@ import matplotlib.markers as mks
 
 def get_log_parsing_script():
     dirname = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-    return dirname + '/parse_log.sh'
+    # return dirname + '/parse_log.sh'
+    return dirname + '/parse_log.py'
 
 def get_log_file_suffix():
     return '.log'
