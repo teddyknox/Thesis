@@ -13,6 +13,6 @@ def stddev(data):
     mu = avg(data)
     return sum([(d - mu)**2 for d in data])/float(len(data)-1)
 
-images = Image.select(Image.score).where(Image.generation_method == "random" and Image.num_ratings > 1)
+images = Image.select(Image.score).where(Image.generation_method == "random" and Image.num_ratings > 0)
 scores = [img.score for img in images]
 print Counter(scores)
