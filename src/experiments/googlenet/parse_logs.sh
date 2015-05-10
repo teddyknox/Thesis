@@ -1,9 +1,9 @@
 #!/bin/bash
-
-rm folds/**/logs/*.train
-rm folds/**/logs/*.test
+set -e
+rm -f folds/**/logs/*.train
+rm -f folds/**/logs/*.test
 for i in $(seq 1 1 10); do
-  pushd folds/$i/logs
-  echo $(readlink caffe.INFO | tail -n 1)
-  popd
+  cd folds/$i/logs
+  ../../../parse_log.sh $(readlink caffe.INFO)
+  cd ../../..
 done
