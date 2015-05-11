@@ -1,12 +1,12 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {chapter}{\numberline {2}Background}{3}
-\contentsline {section}{\numberline {2.1}Related Work in Computational Aesthetics}{3}
-\contentsline {section}{\numberline {2.2}Related Work in Image Classification}{7}
-\contentsline {chapter}{\numberline {3}Design}{8}
-\contentsline {chapter}{\numberline {4}Implementation}{10}
-\contentsline {section}{\numberline {4.1}Training Interface}{10}
-\contentsline {section}{\numberline {4.2}Classifier}{11}
-\contentsline {chapter}{\numberline {5}Results}{12}
-\contentsline {chapter}{\numberline {6}Discussion of Results}{13}
-\contentsline {chapter}{\numberline {7}Conclusion}{14}
-\contentsline {chapter}{Bibliography}{15}
+\contentsline {chapter}{\numberline {2}Background}{4}
+\contentsline {section}{\numberline {2.1}Related Work in Computational Aesthetics}{4}
+\contentsline {section}{\numberline {2.2}Related Work in Image Classification}{8}
+\contentsline {chapter}{\numberline {3}Design}{9}
+\contentsline {chapter}{\numberline {4}Implementation}{11}
+\contentsline {section}{\numberline {4.1}Training Interface}{11}
+\contentsline {section}{\numberline {4.2}Classifier}{12}
+\contentsline {chapter}{\numberline {5}Results}{13}
+\contentsline {chapter}{\numberline {6}Discussion of Results}{14}
+\contentsline {chapter}{\numberline {7}Conclusion}{15}
+\contentsline {chapter}{Bibliography}{16}
