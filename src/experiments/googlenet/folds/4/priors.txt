@@ -1,4 +1,4 @@
-num neg: 1707
-frac neg:0.73
-num pos: 636
-frac pos: 0.27
+num neg: 176
+frac neg:0.755365
+num pos: 57
+frac pos: 0.244635

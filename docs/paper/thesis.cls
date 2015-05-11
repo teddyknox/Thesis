@@ -202,8 +202,8 @@
 \newcommand{\@subtitlesize}{\fontsize{12}{24}\selectfont}
 \newcommand{\@authorsize}{\normalsize\doublespacing} % No Pharaoh he.
 \newcommand{\@conferralmonth}{May}
-\newcommand{\@conferralyear}{2012}
-\newcommand{\@adviser}{Professor XYZ}
+\newcommand{\@conferralyear}{2015}
+\newcommand{\@adviser}{Professor Christopher Andrews}
 
 \newcommand{\titlesize}[1]{\renewcommand{\@titlesize}{#1}}
 \newcommand{\subtitlesize}[1]{\renewcommand{\@subtitlesize}{#1}}
@@ -226,7 +226,7 @@
     \begin{center}
       \@authorsize
       \@author \\
-      ~ \\  
+      ~ \\
       Adviser: \@adviser
     \end{center}
     \vfill
