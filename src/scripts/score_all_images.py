@@ -32,7 +32,7 @@ true_positive = 0
 true_negative = 0
 false_positive = 0
 false_negative = 0
-with open(APP_DIRNAME + '/experiments/googlenet/folds/1/train.txt', 'r') as f:
+with open(APP_DIRNAME + '/experiments/googlenet/folds/1/test.txt', 'r') as f:
     for row in f:
         filename, rating = row.split()
         filename = filename[1:]
