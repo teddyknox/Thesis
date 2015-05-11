@@ -24,8 +24,9 @@ if __name__ == "__main__":
     priors = [0, 0]
     for img in images:
         score = int(bool(img.score))
-        priors[score] += 1
         place = val if low <= r.random() < high else train
+        if place == val:
+            priors[score] += 1
         place.append((img.filename, score))
     with open(os.path.join(output_dir, "train.txt"), 'w') as f:
         for filename, score in train:
@@ -36,4 +37,4 @@ if __name__ == "__main__":
     with open(os.path.join(output_dir, "priors.txt"), 'w') as f:
         neg_priors = float(priors[0])/sum(priors)
         pos_priors = float(priors[1])/sum(priors)
-        f.write("num neg: {}\nfrac neg:{:.2f}\nnum pos: {}\nfrac pos: {:.2f}\n".format(priors[0], neg_priors, priors[1], pos_priors))
+        f.write("num neg: {}\nfrac neg:{:f}\nnum pos: {}\nfrac pos: {:f}\n".format(priors[0], neg_priors, priors[1], pos_priors))
