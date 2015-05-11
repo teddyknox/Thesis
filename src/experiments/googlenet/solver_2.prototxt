@@ -1,0 +1,16 @@
+net: "../../train_val.prototxt"
+test_iter: 16
+test_interval: 10
+test_initialization: false
+display: 10
+average_loss: 10
+base_lr: 0.01
+lr_policy: "step"
+stepsize: 100
+gamma: 0.6
+max_iter: 2000
+momentum: 0.9
+weight_decay: 0.0002
+snapshot: 2000
+snapshot_prefix: "./snapshots/googlenet"
+solver_mode: GPU

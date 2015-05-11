@@ -19,10 +19,13 @@ for FOLD in $(seq 1 $NUM_FOLDS); do
   $SCRIPTS_DIR/write_manifests.py $FOLD $NUM_FOLDS .
   $CAFFE_DIR/convert_imageset --shuffle $IMAGES_DIR train.txt train_lmdb
   $CAFFE_DIR/convert_imageset --shuffle $IMAGES_DIR val.txt val_lmdb
-  $CAFFE_DIR/caffe train --solver=../../solver.prototxt --gpu=0 --log_dir=logs
-  WEIGHTS=$(ls snapshots/* | grep caffemodel | sort -r | head -n 1)
-  $CAFFE_DIR/caffe test --model=../../train_val.prototxt --weights=$WEIGHTS --gpu=0 --log_dir=logs --iterations=100
-  # LOGFILE=$(ls -t logs/* | grep .log.INFO | head -n 1)
+  $CAFFE_DIR/caffe train --solver=../../$1 --gpu=0 --log_dir=logs
+  #WEIGHTS=$(ls snapshots/* | grep caffemodel | sort -r | head -n 1)
+  #$CAFFE_DIR/caffe test --model=../../train_val.prototxt --weights=$WEIGHTS --gpu=0 --log_dir=logs --iterations=100
+  pushd logs
+  LOGFILE=$(ls -t | grep .log.INFO | head -n 1)
+  ../../../parse_log.sh $LOGFILE
+  popd
   # cp $LOGFILE logs/train.log
   # $EXPERIMENT_DIR/plot_training_log.py 0 test_accuracy_vs_iters.png logs/train.log
   # $EXPERIMENT_DIR/plot_training_log.py 2 test_loss_vs_iters.png logs/train.log

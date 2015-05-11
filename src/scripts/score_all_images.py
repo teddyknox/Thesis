@@ -5,29 +5,28 @@ sys.path.append(APP_DIRNAME)
 
 from models import Image, db
 from classifier import classifier, caffe
-from app import IMAGES_DIR
 from peewee import *
 
-# BATCH_SIZE = 32
-#
-# to_score = []
-# for image in Image.select().where(Image.model_score == None or Image.model_prediction == None):
-#     exists = os.path.isfile(APP_DIRNAME + '/data/images/' + image.filename)
-#     if exists:
-#         to_score.append(image)
-#     else:
-#         image.delete()
-#
-# for i in range(0, len(to_score), BATCH_SIZE):
-#     batch = to_score[i:i+BATCH_SIZE]
-#     images = [caffe.io.load_image(os.path.join(IMAGES_DIR, image.filename))
-#                 for image in batch]
-#     results = classifier.predict(images)
-#     for x in range(results.shape[0]):
-#         scores = results[x]
-#         batch[x].model_prediction = scores[1] > scores[0]
-#         batch[x].model_score = scores[1]
-#         batch[x].save()
+BATCH_SIZE = 32
+
+to_score = []
+for image in Image.select():
+    exists = os.path.isfile(APP_DIRNAME + '/images/' + image.filename)
+    if exists:
+        to_score.append(image)
+    else:
+        image.delete()
+
+for i in range(0, len(to_score), BATCH_SIZE):
+    batch = to_score[i:i+BATCH_SIZE]
+    images = [caffe.io.load_image(os.path.join(APP_DIRNAME + '/images/' + image.filename))]
+    for image in batch:
+        results = classifier.predict(images)
+        for x in range(results.shape[0]):
+            scores = results[x]
+            batch[x].model_prediction = scores[1] > scores[0]
+            batch[x].model_score = scores[1]
+            batch[x].save()
 
 true_positive = 0
 true_negative = 0
