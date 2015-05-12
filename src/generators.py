@@ -7,7 +7,7 @@ import uuid
 from PIL import Image, ImageDraw
 
 BATCH_SIZE = 30
-CONFIDENCE_THRESHOLD = 0.6
+CONFIDENCE_THRESHOLD = 0.0
 IMAGES_DIR = os.path.join(APP_DIRNAME, 'images')
 
 def generate_image():

@@ -10,6 +10,7 @@
 \usepackage{color}
 
 
+
 \bibliographystyle{plain}
 \title {Computational Aesthetic Evaluation using Convolutional Neural Networks}
 \author {Edward Knox}
@@ -205,7 +206,7 @@ The core conceptual unit of this idea is the convolutional filter, which can be 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{visualizations/simple-cnn.png}
+\includegraphics[width=0.5\textwidth]{visualizations/simple-cnn.png}
 \caption{Simple CNN with 2 convolutional layers, one filter each.}
 \label{fig:cnn-in-neurons}
 \end{figure}
@@ -548,29 +549,22 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
-  columns=flexible,
-  basicstyle={\small\ttfamily},
+  frame=shadowbox,
+  rulesepcolor=\color{blue}
+  basicstyle={\footnotesize\ttfamily},
   numbers=none,
   numberstyle=\tiny\color{gray},
   keywordstyle=\color{blue},
   commentstyle=\color{dkgreen},
   stringstyle=\color{mauve},
   breaklines=true,
+  title=\lstname
   breakatwhitespace=true,
   tabsize=3
 }
 
-\begin{lstlisting}
-// Hello.java
-import javax.swing.JApplet;
-import java.awt.Graphics;
-
-public class Hello extends JApplet {
-    public void paintComponent(Graphics g) {
-        g.drawString("Hello, world!", 65, 95);
-    }    
-}
-\end{lstlisting}
+\lstset{language=bash, caption=Bash script directing the experiement, label=experiment script}
+\lstinputlisting{../../src/experiments/googlenet/kfolds_googlenet.sh}[tp]
 
 \nocite{*}
 \bibliography{thesis}
