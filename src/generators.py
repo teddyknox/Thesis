@@ -26,7 +26,8 @@ def generate_image():
 
 
 def pretty_image_generator():
-    from classifier import classifier, CaffeImportError
+    from classifier import classifier
+    import caffe
     pretty_images = []
     while True:
         while len(pretty_images) == 0:
@@ -45,7 +46,4 @@ def pretty_image_generator():
 
 pig = pretty_image_generator()
 def generate_pretty_image():
-    if caffe:
-        return next(pig)
-    else:
-        raise CaffeImportError()
+    return next(pig)
