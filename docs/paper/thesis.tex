@@ -8,7 +8,7 @@
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{listings}
 \usepackage{color}
-
+\usepackage{float}
 
 
 \bibliographystyle{plain}
@@ -32,7 +32,7 @@ State-of-the-art machine learning techniques have become competitive with humans
 \end{abstract}
 
 \begin{acknowledgements}
-I'd like to thank Professor Andrews for his patience and wisdom in guiding my newfangled exploration of the world of academic research. 
+I'd like to thank Professor Andrews for his patience and wisdom in guiding my newfangled exploration of the world of academic research. I'd also like to thank my loving parents for their support.
 \end{acknowledgements}
 
 \contentspage
@@ -193,7 +193,7 @@ Convolutional neural networks are defined by their ability to produce abstract h
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{visualizations/nn.png}
+\includegraphics[width=0.5\textwidth]{visualizations/nn.png}
 \caption{Visualization of a two-layer fully-connected neural network}
 \label{fig:nn}
 \end{figure}
@@ -339,14 +339,6 @@ We decided to use a popular neural network modeling framework called ``Caffe'' t
 The convolutional neural network training process is computationally intentensive, requiring training time that grows quickly with the width and number of layers. GoogLeNet is a large, 22-layer CNN that would requires significant resources to run. To model our data in a resonable amount of time, we decided to rent an Amazon g2.2xlarge cloud instance, complete with a graphics card sporting 1,536 CUDA cores. This allowed for us to take advantage of enticing GPU speedups that Caffe optionally offers.\footnote{This cloud setup was convenient both financial and technically. Amazon's pay-as-you-go billing model meant we only paid for computing resources that we used, and their transparent cloud imaging technology meant that our Caffe installation persisted through restarts. Instant remote access to high-powered computing is a magical experience.}
 % TODO: CPU VS GPU graphic
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{visualizations/caffe-performance.png}
-\caption{Caffe performance benchmark acrosss installation types (higher is better).}
-\label{fig:caffebenchmark}
-\end{figure}
-
-
 Next we retrofitted the provided GoogLeNet architecture to produce predictions for 2 labels, instead of 1000. Finally we wrote bash scripts to automate all 10 folds of the experiment's execution, which included data splitting, data preprocessing, model training, model testing, and log parsing, and statistical aggregation.
 
 
@@ -404,6 +396,7 @@ It has been said in the machine learning that the optimization of hyperparameter
 
 The combination of a paucity of data and a massive model made for extremely fast convergence to our best results. For comparison, our model would train to its best test accuracy within 1000 training iterations, while it was not unusual for Google Research to train GoogLeNet for upwards of 2,400,000 iterations on ILSVRC competition data. Our model tended to bounce around its test accuracy optimum even using a small step size, indicating that increases in accuracy on the training set almost immediately stopped translating into increases in accuracy on the test set. Unfortunately this accuracy of this result does not provide us with enough information to draw concrete conclusions about the applicability of convolutional neural networks for visual computational aesthetics tasks. The ineffectiveness of the neural network for predicting outcomes could have resulted for many reasons, which we will discuss in the next section.
 
+In out final tests, we noticed that even the best instances of our classifier would rarely give positive predictions on input images, meaning the out probablity of predicting positive rarely exceeded the output probability of predicting negative (another sign of overfitting). In order to visualize the model's performance, we asked it to classify brand new images. Since the classifier would almost never predict positive, we were forced to lower the threshold of a positive rating by considering a positive classification one in which the positve classification probability is greater than 0.4. The result of this visualization are shown in the appendix, and though most of these predictions are wrong, they notable for their predominantly green flavor. It seems that our classifier found dominant image color to be one of the most predictive features \footnote{I wasn't aware that green was my favorite color}.
 
 % data analysis
   % how many ratings
@@ -516,7 +509,6 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
 
 \appendix
 \chapter{Generative Art Samples}
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{visualizations/randomgallery-shortened.png}
@@ -538,6 +530,13 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
 \label{fig:positive-geneartive-art}
 \end{figure}
 
+\begin{figure}[tp]
+\centering
+\includegraphics[width=\textwidth]{visualizations/smart-pretty.png}
+\caption{A random sample of generative art rated positively by the classifier.}
+\label{fig:positive-geneartive-art}
+\end{figure}
+
 \chapter{Relevant Code Samples}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
@@ -546,8 +545,7 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
 
 \lstset{frame=tb,
   language=bash,
-  aboveskip=2mm,
-  belowskip=2mm,
+  lineskip=-0.3mm,
   showstringspaces=false,
   basicstyle={\footnotesize\ttfamily},
   numbers=none,
@@ -561,14 +559,23 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
   tabsize=3
 }
 
-\lstset{language=bash, caption=Script directing the experiement (kfolds\_googlenet.sh), label=experiment script}
+\lstset{language=bash, caption=Experiment Script}
 \lstinputlisting{../../src/experiments/googlenet/kfolds_googlenet.sh}
-
-\lstset{language=python, caption=Image generation script, label=experiment script}
+\clearpage
+\lstset{language=python, caption=Image Generator}
 \lstinputlisting{../../src/generators.py}
-
-\lstset{language=python, caption=K-Folds data splitting script, label=experiment script}
+\clearpage
+\lstset{language=python, caption=K-Folds Data Splitter}
 \lstinputlisting{../../src/scripts/write_manifests.py}
+\clearpage
+\lstset{language=python, caption=Training Interface}
+\lstinputlisting{../../src/web/views.py}
+\clearpage
+\lstset{language=python, caption=Training Interface Backend}
+\lstinputlisting{../../src/web/views.py}
+\clearpage
+\lstset{language=python, caption=Python-Caffe Interface}
+\lstinputlisting{../../src/web/views.py}
 
 \nocite{*}
 \bibliography{thesis}

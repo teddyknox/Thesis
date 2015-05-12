@@ -14,5 +14,5 @@
 \contentsline {chapter}{\numberline {6}Discussion of Results}{22}
 \contentsline {chapter}{\numberline {7}Conclusion}{25}
 \contentsline {chapter}{\numberline {A}Generative Art Samples}{26}
-\contentsline {chapter}{\numberline {B}Relevant Code Samples}{30}
-\contentsline {chapter}{Bibliography}{35}
+\contentsline {chapter}{\numberline {B}Relevant Code Samples}{31}
+\contentsline {chapter}{Bibliography}{40}
