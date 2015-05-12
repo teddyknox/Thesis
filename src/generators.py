@@ -1,12 +1,14 @@
+import sys, os, inspect
+APP_DIRNAME = os.path.abspath(os.path.dirname(inspect.getfile(inspect.currentframe())))
+
 from random import randint, uniform
 from colorsys import hls_to_rgb
 import uuid
 from PIL import Image, ImageDraw
-import os
 
 BATCH_SIZE = 30
 CONFIDENCE_THRESHOLD = 0.6
-
+IMAGES_DIR = os.path.join(APP_DIRNAME, 'images')
 
 def generate_image():
     bg = (uniform(0, 360), uniform(0, 1), uniform(0, 1))
