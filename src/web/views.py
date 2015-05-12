@@ -76,14 +76,10 @@ def smart_pretty_gallery(num=300):
     """
     Generates a gallery of images that are classified as pretty.
     """
-    images = Image.select().where(Image.generation_method == "scored").limit(num)
-    images = list(images)
-    # left = num - len(images)
-    # for i in xrange(left):
-    #     filename, score = generate_pretty_image()
-    #     image = Image.create(filename=filename, model_score=score, generation_method="scored")
-    #     images.append(image)
-    images = map(lambda i: i.filename, images)
+    images = []
+    for i in xrange(16):
+        filename, score = generate_pretty_image()
+        images.append(filename)
     return render_template('gallery.html', images=images)
 
 
