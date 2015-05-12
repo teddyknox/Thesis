@@ -7,7 +7,7 @@ import uuid
 from PIL import Image, ImageDraw
 
 BATCH_SIZE = 30
-CONFIDENCE_THRESHOLD = 0.0
+CONFIDENCE_THRESHOLD = 0.1
 IMAGES_DIR = os.path.join(APP_DIRNAME, 'images')
 
 def generate_image():
@@ -39,9 +39,10 @@ def generate_pretty_image():
         results = classifier.predict(caffeImages, oversample=True)
         for x in range(results.shape[0]):
             scores = results[x]
-            prediction = (-scores).argsort()[0]
-            if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+            # prediction = (-scores).argsort()[0]
+            # if prediction == 1 and scores[1] > CONFIDENCE_THRESHOLD:
+            if scores[1]  > CONFIDENCE_THRESHOLD:
                 return (images[x], scores[1])
-            else:
+            # else:
                 # throw away image
                 os.remove(os.path.join(IMAGES_DIR, images[x]))

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys, os, inspect
-APP_DIRNAME = os.path.abspath(os.path.dirname(os.path.dirname(inspect.getfile(inspect.currentframe()))))
+APP_DIRNAME = os.path.abspath(os.path.dirname(
+    os.path.dirname(inspect.getfile(inspect.currentframe()))))
 print APP_DIRNAME
 sys.path.append(APP_DIRNAME)
 
@@ -18,7 +19,8 @@ if __name__ == "__main__":
     fold_size = float(1)/num_folds
     low = (fold - 1) * fold_size
     high = low + fold_size
-    images = Image.select().where(Image.generation_method == "random" and Image.num_ratings > 0)
+    images = Image.select()
+                .where(Image.generation_method == "random" and Image.num_ratings > 0)
     train = []
     val = []
     priors = [0, 0]
@@ -37,4 +39,5 @@ if __name__ == "__main__":
     with open(os.path.join(output_dir, "priors.txt"), 'w') as f:
         neg_priors = float(priors[0])/sum(priors)
         pos_priors = float(priors[1])/sum(priors)
-        f.write("num neg: {}\nfrac neg:{:f}\nnum pos: {}\nfrac pos: {:f}\n".format(priors[0], neg_priors, priors[1], pos_priors))
+        f.write("num neg: {}\nfrac neg:{:f}\nnum pos: {}\nfrac pos: {:f}\n"
+            .format(priors[0], neg_priors, priors[1], pos_priors))
