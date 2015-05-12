@@ -1,14 +1,11 @@
 #!/bin/sh
-
-# Quit on error code
-set -e
+set -e # Quit on error code
 
 EXPERIMENT_DIR=$(dirname $0)
 pushd $EXPERIMENT_DIR
 CAFFE_DIR=$HOME/caffe/build/tools
 SCRIPTS_DIR=$(readlink -f ../../scripts)
 IMAGES_DIR=$(readlink -f ../../images)/
-
 NUM_FOLDS=10
 
 for FOLD in $(seq 1 $NUM_FOLDS); do
@@ -34,11 +31,3 @@ for FOLD in $(seq 1 $NUM_FOLDS); do
   popd
 done
 popd
-
-
-
-# produce ith fold data manifests
-# run them through the lmdb generators
-# render the experiment prototxt templates
-# run experiment, making sure to log
-# generate graphs, statistics

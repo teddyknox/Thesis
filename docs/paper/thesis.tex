@@ -545,12 +545,10 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-  language=Java,
-  aboveskip=3mm,
-  belowskip=3mm,
+  language=bash,
+  aboveskip=2mm,
+  belowskip=2mm,
   showstringspaces=false,
-  frame=shadowbox,
-  rulesepcolor=\color{blue}
   basicstyle={\footnotesize\ttfamily},
   numbers=none,
   numberstyle=\tiny\color{gray},
@@ -558,13 +556,19 @@ Given the difficulty of defining art itself, it is no surprise that its criticis
   commentstyle=\color{dkgreen},
   stringstyle=\color{mauve},
   breaklines=true,
-  title=\lstname
+  title=\lstname,
   breakatwhitespace=true,
   tabsize=3
 }
 
-\lstset{language=bash, caption=Bash script directing the experiement, label=experiment script}
-\lstinputlisting{../../src/experiments/googlenet/kfolds_googlenet.sh}[tp]
+\lstset{language=bash, caption=Script directing the experiement (kfolds_googlenet.sh), label=experiment script}
+\lstinputlisting{../../src/experiments/googlenet/kfolds_googlenet.sh}
+
+\lstset{language=python, caption=Image generation script, label=experiment script}
+\lstinputlisting{../../src/generators.py}
+
+\lstset{language=python, caption=K-Folds data splitting script, label=experiment script}
+\lstinputlisting{../../src/scripts/write_manifests.py}
 
 \nocite{*}
 \bibliography{thesis}

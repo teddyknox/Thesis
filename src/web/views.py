@@ -78,8 +78,10 @@ def smart_pretty_gallery(num=300):
     """
     images = []
     for i in xrange(16):
+        print "get image {}".format(i)
         filename, score = generate_pretty_image()
         images.append(filename)
+    print images
     return render_template('gallery.html', images=images)
 
 
