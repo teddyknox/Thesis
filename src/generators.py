@@ -30,7 +30,10 @@ def generate_image():
 def generate_pretty_image():
     from classifier import classifier
     import caffe
+    iternum = 1
     while True:
+        print iternum
+        iternum += 1
         images = [generate_image() for i in xrange(BATCH_SIZE)]
         caffeImages = [caffe.io.load_image(os.path.join(IMAGES_DIR, filename)) for filename in images]
         results = classifier.predict(caffeImages, oversample=True)
