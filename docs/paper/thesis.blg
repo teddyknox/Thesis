@@ -7,47 +7,49 @@ Warning--empty journal in galanter-3
 Warning--empty year in galanter-3
 Warning--empty journal in galanter-1
 Warning--empty journal in koshelev-1
+Warning--empty journal in lakedeep
+Warning--empty year in lakedeep
 Warning--empty journal in Takagi
 Warning--empty year in Takagi
-You've used 19 entries,
+You've used 26 entries,
             2118 wiz_defined-function locations,
-            587 strings with 6502 characters,
-and the built_in function-call counts, 5766 in all, are:
-= -- 555
-> -- 249
-< -- 5
-+ -- 104
-- -- 82
-* -- 319
-:= -- 965
-add.period$ -- 59
-call.type$ -- 19
-change.case$ -- 92
+            626 strings with 7887 characters,
+and the built_in function-call counts, 8689 in all, are:
+= -- 854
+> -- 387
+< -- 9
++ -- 157
+- -- 128
+* -- 513
+:= -- 1423
+add.period$ -- 82
+call.type$ -- 26
+change.case$ -- 132
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 268
-empty$ -- 473
-format.name$ -- 82
-if$ -- 1230
+cite$ -- 34
+duplicate$ -- 391
+empty$ -- 689
+format.name$ -- 128
+if$ -- 1868
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 25
-newline$ -- 96
-num.names$ -- 38
-pop$ -- 146
+int.to.str$ -- 26
+missing$ -- 31
+newline$ -- 130
+num.names$ -- 54
+pop$ -- 196
 preamble$ -- 1
-purify$ -- 79
+purify$ -- 113
 quote$ -- 0
-skip$ -- 178
+skip$ -- 276
 stack$ -- 0
-substring$ -- 250
-swap$ -- 61
-text.length$ -- 5
+substring$ -- 443
+swap$ -- 106
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 64
-warning$ -- 6
-while$ -- 53
-width$ -- 21
-write$ -- 197
-(There were 6 warnings)
+type$ -- 92
+warning$ -- 8
+while$ -- 82
+width$ -- 28
+write$ -- 273
+(There were 8 warnings)

@@ -11,10 +11,29 @@ Hartmut Bohnacker.
   processing}.
 \newblock Princeton Architectural Press, New York, 2012.
 
+\bibitem{campbell2013self}
+Allan Campbell.
+\newblock {\em Self Organising Map based Method for Understanding High
+  Aesthetic Value Abstract Image Features}.
+\newblock PhD thesis, Royal Melbourne Institute of Technology Melbourne, 2013.
+
 \bibitem{cipolla2013machine}
 Roberto Cipolla.
 \newblock {\em Machine learning for computer vision}.
 \newblock Springer, Berlin New York, 2013.
+
+\bibitem{Cun90handwrittendigit}
+Le~Cun, B.~Boser, J.~S. Denker, D.~Henderson, R.~E. Howard, W.~Hubbard, and
+  L.~D. Jackel.
+\newblock Handwritten digit recognition with a back-propagation network.
+\newblock In {\em Advances in Neural Information Processing Systems}, pages
+  396--404. Morgan Kaufmann, 1990.
+
+\bibitem{cybenko1989approximation}
+George Cybenko.
+\newblock Approximation by superpositions of a sigmoidal function.
+\newblock {\em Mathematics of control, signals and systems}, 2(4):303--314,
+  1989.
 
 \bibitem{flake}
 Gary~William Flake.
@@ -70,6 +89,23 @@ Misha Kosheleva, Vladik Kreinovich, and Yeung Yam.
   complexity formalizes birkhoff's idea.
 \newblock 1998.
 
+\bibitem{NIPS2012_4824}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E. Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In F.~Pereira, C.J.C. Burges, L.~Bottou, and K.Q. Weinberger,
+  editors, {\em Advances in Neural Information Processing Systems 25}, pages
+  1097--1105. Curran Associates, Inc., 2012.
+
+\bibitem{lakedeep}
+Brenden~M Lake, Wojciech Zaremba, Rob Fergus, and Todd~M Gureckis.
+\newblock Deep neural networks predict category typicality ratings for images.
+
+\bibitem{lecun1989generalization}
+Yann LeCun et~al.
+\newblock Generalization and network design strategies.
+\newblock {\em Connections in Perspective. North-Holland, Amsterdam}, pages
+  143--55, 1989.
+
 \bibitem{machado2008experiments}
 Penousal Machado, Juan Romero, and Bill Manaris.
 \newblock Experiments in computational aesthetics.
@@ -102,5 +138,12 @@ Christian Szegedy, Wei Liu, Yangqing Jia, Pierre Sermanet, Scott Reed, Dragomir
 Hideyuki Takagi.
 \newblock Interactive evolutionary computation: Fusion of the capabilities of
   ec optimization and human evaluation.
+
+\bibitem{zhou2014computational}
+Yimin Zhou, Yunlan Tan, and Guangyao Li.
+\newblock Computational aesthetic measurement of photographs based on
+  multi-features with saliency.
+\newblock In {\em Intelligent Computing Theory}, pages 357--366. Springer,
+  2014.
 
 \end{thebibliography}

@@ -9,6 +9,8 @@ from app import app
 from generators import *
 from models import *
 
+IMAGES_DIR = os.path.join(APP_DIRNAME, 'images')
+
 
 @app.route('/')
 def rating():
